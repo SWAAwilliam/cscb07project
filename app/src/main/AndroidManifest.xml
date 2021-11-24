@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.B07ProjectApplication">
-
+        <activity
+            android:name=".CustomerAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.LoggedInUserView$CustomerCreateAccountActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
