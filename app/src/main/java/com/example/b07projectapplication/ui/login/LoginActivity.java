@@ -31,20 +31,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
-    private Button button;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-
-        button = findViewById(R.id.ca_button);
-        button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                createCAccount();
-            }
-        });
+        setContentView(R.layout.activity_login);
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -144,8 +136,9 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 
-    public void createCAccount(){
+    public void createCAccount(View view){
         Intent intent = new Intent (this, CustomerAccountActivity.class);
+        Button button = (Button) findViewById(R.id.ca_button);
         startActivity(intent);
 
     }

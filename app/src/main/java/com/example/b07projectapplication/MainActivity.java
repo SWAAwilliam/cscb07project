@@ -13,27 +13,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //REMOVE TITLE BAR
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
 
-        setContentView(R.layout.activity_main);
-        button = findViewById(R.id.ca_button);
-        button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                createCAccount();
-            }
-        });
     }
-
-    public void createCAccount(){
-        Intent intent = new Intent (this, CustomerAccountActivity.class);
-        startActivity(intent);
-
-    }
-
-
 }

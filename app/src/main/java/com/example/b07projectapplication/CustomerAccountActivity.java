@@ -8,24 +8,19 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class CustomerAccountActivity extends AppCompatActivity {
-    private Button button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_account_acitivity);
-        button = findViewById(R.id.ca_button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createCAccount();
-            }
-        });
-
+        getSupportActionBar().hide();
     }
 
     public void createCAccount() {
+        //Change the purpose of this button to creating an account when clicked
         Intent intent = new Intent(this, CustomerAccountActivity.class);
+        Button button = (Button) findViewById(R.id.c_account);
         startActivity(intent);
 
     }

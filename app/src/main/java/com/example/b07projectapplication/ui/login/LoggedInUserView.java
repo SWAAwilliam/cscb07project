@@ -29,21 +29,13 @@ class LoggedInUserView {
 
     public static class CustomerCreateAccountActivity extends AppCompatActivity {
 
-
-
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_customer_create_account);
+            setContentView(R.layout.activity_customer_account_acitivity);
             // Get the Intent that started this activity and extract the string
 
-
-
-
         }
-
-
-
 
     }
 }
