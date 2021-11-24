@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,9 +23,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.b07projectapplication.CustomerAccountActivity;
 import com.example.b07projectapplication.R;
-import com.example.b07projectapplication.ui.login.LoginViewModel;
-import com.example.b07projectapplication.ui.login.LoginViewModelFactory;
 import com.example.b07projectapplication.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
+        setContentView(R.layout.activity_login);
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -134,4 +135,12 @@ public class LoginActivity extends AppCompatActivity {
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
+
+    public void createCAccount(View view){
+        Intent intent = new Intent (this, CustomerAccountActivity.class);
+        Button button = (Button) findViewById(R.id.ca_button);
+        startActivity(intent);
+
+    }
+
 }
