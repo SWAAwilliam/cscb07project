@@ -15,4 +15,10 @@
     <string name="create_account">Create Account</string>
     <string name="new_account_screen">New Account screen</string>
 
+    <string name="welcome_home">Welcome, </string>
+    <string name="select_button">Select a button to get started</string>
+    <string name="view_orders">View Orders</string>
+    <string name="products">Products</string>
+    <string name="my_profile">My Profile</string>
+
 </resources>
