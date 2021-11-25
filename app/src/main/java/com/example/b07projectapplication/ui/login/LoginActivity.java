@@ -2,6 +2,7 @@ package com.example.b07projectapplication.ui.login;
 
 import android.app.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -26,11 +27,22 @@ import android.widget.Toast;
 import com.example.b07projectapplication.CustomerAccountActivity;
 import com.example.b07projectapplication.R;
 import com.example.b07projectapplication.databinding.ActivityLoginBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
+
+    private EditText input_email;
+    private EditText input_password;
+    private Button btn_login;
+    private FirebaseAuth auth;
+    private FirebaseUser user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +60,8 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
+
+
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -124,7 +138,45 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         });
+
+        input_email = findViewById(R.id.username);
+        input_password = findViewById(R.id.password);
+        btn_login = findViewById(R.id.login);
+
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
     }
+
+    public void login(){
+        String email = input_email.getText().toString();
+
+        String password = input_password.getText().toString();
+
+        auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    sendUserToLogin();
+                    Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+    //send the user to the logged in screen view
+    private void sendUserToLogin(){
+        Intent intent = new Intent(LoginActivity.this, testActivity.class);
+        intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
 
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
