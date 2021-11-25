@@ -2,13 +2,10 @@ package com.example.b07projectapplication.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.b07projectapplication.CustomerAccountActivity;
 import com.example.b07projectapplication.R;
 
 /**
@@ -32,8 +29,9 @@ class LoggedInUserView {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_customer_account_acitivity);
+            setContentView(R.layout.customer_account_activity);
             // Get the Intent that started this activity and extract the string
+            Intent intent = getIntent();
 
         }
 

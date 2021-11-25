@@ -4,8 +4,6 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/William/Documents/B07ProjectApplication/app/src/main/res/layout/activity_main.xml" value="0.5" />
-        <entry key="..\:/Users/William/Documents/B07ProjectBranchTest/app/src/main/res/layout/activity_customer_account_acitivity.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/William/Documents/B07ProjectBranchTest/app/src/main/res/layout/activity_login.xml" value="0.34057971014492755" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.390234375" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/activity_login.xml" value="0.5" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
@@ -14,7 +12,9 @@
         <entry key="..\:/Users/shahz/Desktop/cscb07/cscb07project/app/src/main/res/layout/activity_customer_account_acitivity.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/shahz/Desktop/cscb07/cscb07project/app/src/main/res/layout/activity_customer_create_account.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/shahz/Desktop/cscb07/cscb07project/app/src/main/res/layout/activity_login.xml" value="0.22" />
-        <entry key="..\:/Users/shahz/Desktop/cscb07/cscb07project/app/src/main/res/layout/activity_main.xml" value="0.10666666666666667" />
+        <entry key="..\:/Users/shahz/Desktop/cscb07/cscb07project/app/src/main/res/layout/activity_main.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/shahz/Desktop/cscb07/cscb07project/app/src/main/res/layout/activity_new.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/shahz/Desktop/cscb07/cscb07project/app/src/main/res/layout/activity_test.xml" value="0.22" />
       </map>
     </option>
   </component>
