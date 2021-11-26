@@ -63,16 +63,18 @@
             android:text="@string/view_orders"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
+
         <Button
-            android:layout_marginTop="30dp"
             android:id="@+id/btnProducts"
             android:layout_width="218dp"
             android:layout_height="81dp"
+            android:layout_marginTop="30dp"
             android:backgroundTint="@android:color/holo_blue_dark"
             android:fontFamily="@font/roboto_bold"
+            android:onClick="openProductPage"
+            android:text="@string/products"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:text="@string/products" />
+            android:textSize="20sp" />
         <Button
             android:layout_marginTop="30dp"
             android:id="@+id/btnProfile"
