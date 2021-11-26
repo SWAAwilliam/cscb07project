@@ -4,7 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.b07projectapplication.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +33,9 @@ public class CustomerAccountActivity extends AppCompatActivity {
     private Button btn_create;
     private FirebaseAuth auth;
     private FirebaseUser user;
+    private Switch s;
+    private EditText input_storeName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,24 @@ public class CustomerAccountActivity extends AppCompatActivity {
         input_password = findViewById(R.id.editPassword);
         input_firstName = findViewById(R.id.editFirstName);
         input_lastName = findViewById(R.id.editLastName);
+        TextView owner = findViewById(R.id.textView9);
+        input_storeName = findViewById(R.id.editStoreName);
+        s = findViewById(R.id.switch1);
+
+        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    owner.setVisibility(View.VISIBLE);
+                    input_storeName.setVisibility(View.VISIBLE);
+                }
+                else{
+                    owner.setVisibility(View.INVISIBLE);
+                    input_storeName.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
