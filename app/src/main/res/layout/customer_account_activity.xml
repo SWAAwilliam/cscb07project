@@ -10,31 +10,43 @@
         android:id="@+id/email"
         android:layout_width="183dp"
         android:layout_height="24dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="sans-serif"
         android:text="Email Address"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editFullName" />
+        app:layout_constraintTop_toBottomOf="@+id/editLastName" />
 
     <TextView
         android:id="@+id/fullname"
         android:layout_width="183dp"
         android:layout_height="24dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="200dp"
-        android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif"
-        android:text="Full Name"
+        android:text="Last Name"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/editFullName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.86" />
+        app:layout_constraintTop_toBottomOf="@+id/editFirstName" />
+
+    <TextView
+        android:id="@+id/fullname4"
+        android:layout_width="183dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="200dp"
+        android:fontFamily="sans-serif"
+        android:text="First Name"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/pass"
@@ -65,11 +77,11 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/editFullName"
+        android:id="@+id/editLastName"
         android:layout_width="223dp"
         android:layout_height="48dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:fontFamily="sans-serif"
         android:inputType="textPersonName"
@@ -79,6 +91,23 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fullname"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/editFirstName"
+        android:layout_width="223dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColor="#877F7F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fullname4"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -98,16 +127,17 @@
         android:layout_width="154dp"
         android:layout_height="63dp"
         android:layout_marginStart="106dp"
-        android:layout_marginTop="100dp"
         android:layout_marginEnd="144dp"
         android:layout_marginBottom="106dp"
-        android:fontFamily="sans-serif"
-        android:text="Create Account"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/create_account"
         android:textSize="18sp"
         app:backgroundTint="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editPassword"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

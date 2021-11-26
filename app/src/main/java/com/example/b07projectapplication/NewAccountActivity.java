@@ -13,6 +13,5 @@ public class NewAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_account_activity);
         getSupportActionBar().hide();
-        Intent intent = getIntent();
     }
 }

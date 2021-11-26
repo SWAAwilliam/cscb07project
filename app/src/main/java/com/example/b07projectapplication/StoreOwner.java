@@ -14,5 +14,7 @@ public class StoreOwner extends Person{
         this.storeName = storeName;
     }
 
+    public void setStoreName(String storeName){this.storeName = storeName;}
+
 
 }

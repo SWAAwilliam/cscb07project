@@ -16,6 +16,14 @@ public class Person {
         this.lastName = lastName;
     }
 
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+    public void setUserUID(String userUID) { this.userUID = userUID; }
+    public String getFirstName() { return this.firstName; }
+    public String getLastName() { return this.lastName; }
+    public String getUserUID() { return this.userUID; }
+
+
     @Override
     public int hashCode() {
         return Objects.hash(userUID);
