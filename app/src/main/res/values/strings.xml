@@ -21,4 +21,6 @@
     <string name="products">Products</string>
     <string name="my_profile">My Profile</string>
 
+    <string name="add_product">Add New Product</string>
+
 </resources>
