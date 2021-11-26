@@ -81,7 +81,7 @@ public class CustomerAccountActivity extends AppCompatActivity {
         person.setFirstName( firstName );
         person.setLastName( lastName );
 
-        ref.child("users").child( person.getUserUID() ).setValue(person);
+        ref.child("users").child( firstName+lastName ).setValue(person);
 
     }
 
