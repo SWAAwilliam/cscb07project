@@ -35,6 +35,7 @@ public class CustomerAccountActivity extends AppCompatActivity {
     private FirebaseUser user;
     private Switch s;
     private EditText input_storeName;
+    private boolean ownerCheck;
 
 
     @Override
@@ -57,10 +58,12 @@ public class CustomerAccountActivity extends AppCompatActivity {
                 if(isChecked){
                     owner.setVisibility(View.VISIBLE);
                     input_storeName.setVisibility(View.VISIBLE);
+                    ownerCheck = true;
                 }
                 else{
                     owner.setVisibility(View.INVISIBLE);
                     input_storeName.setVisibility(View.INVISIBLE);
+                    ownerCheck = false;
                 }
             }
         });
@@ -100,14 +103,27 @@ public class CustomerAccountActivity extends AppCompatActivity {
     }
 
     private void createUser(String firstName, String lastName, String userUID){
-        //NEED TO MODIFY THIS FOR WHEN WE CREATE A OWNER/CUSTOMER SWITCH
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        Person person = new Person();
-        person.setUserUID( userUID );
-        person.setFirstName( firstName );
-        person.setLastName( lastName );
+        String storeName = input_storeName.getText().toString();
 
-        ref.child("users").child( firstName+lastName ).setValue(person);
+        if (ownerCheck){
+            //USER IS AN OWNER
+            StoreOwner owner = new StoreOwner();
+            owner.setUserUID( userUID );
+            owner.setFirstName( firstName );
+            owner.setLastName( lastName );
+            owner.setOwnerCheck( true );
+            owner.setStoreName( storeName );
+            ref.child("users").child( firstName+lastName ).setValue(owner);
+        }
+        else{
+            //USER IS A CUSTOMER
+            Customer customer = new Customer();
+            customer.setUserUID( userUID );
+            customer.setFirstName( firstName );
+            customer.setLastName( lastName );
+            ref.child("users").child( firstName+lastName ).setValue(customer);
+        }
 
     }
 
