@@ -114,7 +114,7 @@ public class CustomerAccountActivity extends AppCompatActivity {
             owner.setLastName( lastName );
             owner.setOwnerCheck( true );
             owner.setStoreName( storeName );
-            ref.child("users").child( firstName+lastName ).setValue(owner);
+            ref.child("users").child(user.getUid()).setValue(owner);
         }
         else{
             //USER IS A CUSTOMER
@@ -122,7 +122,7 @@ public class CustomerAccountActivity extends AppCompatActivity {
             customer.setUserUID( userUID );
             customer.setFirstName( firstName );
             customer.setLastName( lastName );
-            ref.child("users").child( firstName+lastName ).setValue(customer);
+            ref.child("users").child(user.getUid()).setValue(customer);
         }
 
     }
@@ -132,5 +132,7 @@ public class CustomerAccountActivity extends AppCompatActivity {
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
+
 
 }
