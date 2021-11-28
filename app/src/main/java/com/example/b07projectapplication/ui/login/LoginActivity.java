@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.b07projectapplication.CustomerAccountActivity;
+import com.example.b07projectapplication.CustomerHomePage;
 import com.example.b07projectapplication.R;
 import com.example.b07projectapplication.StoreOwnerHomepage;
 import com.example.b07projectapplication.databinding.ActivityLoginBinding;
@@ -215,7 +216,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     //send the user to the logged in screen view
     private void sendUserToLogin(){
-        Intent intent = new Intent(LoginActivity.this, testActivity.class);
+        Intent intent = new Intent(LoginActivity.this, CustomerHomePage.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

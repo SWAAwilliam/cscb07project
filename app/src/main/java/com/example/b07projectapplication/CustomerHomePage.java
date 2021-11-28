@@ -5,21 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 
-public class StoreOwnerHomepage extends AppCompatActivity {
+public class CustomerHomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_owner_homepage);
+        setContentView(R.layout.activity_customer_homepage);
         getSupportActionBar().hide();
     }
 
-    public void openProductPage(View view){
-        Intent intent = new Intent(this, StoreOwner_ViewProducts.class);
+
+    public void sendToViewStores(View view){
+        Intent intent = new Intent(CustomerHomePage.this, Customer_ViewStores.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
-        Button button = (Button) findViewById(R.id.btnProducts);
+        ImageButton button = (ImageButton) findViewById(R.id.btnViewStoresCustomer);
         startActivity(intent);
     }
+
+
 }
