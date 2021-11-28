@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.b07projectapplication.CustomerAccountActivity;
+import com.example.b07projectapplication.CustomerHomePage;
 import com.example.b07projectapplication.R;
 import com.example.b07projectapplication.StoreOwnerHomepage;
 import com.example.b07projectapplication.databinding.ActivityLoginBinding;
@@ -133,21 +134,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
+                    login();
                 }
                 return false;
             }
         });
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
-            }
-        });
 
         input_email = findViewById(R.id.username);
         input_password = findViewById(R.id.password);
@@ -208,14 +200,16 @@ public class LoginActivity extends AppCompatActivity {
                         sendUserToOwner();
                     }
                 }
-
+                else{
+                    Toast.makeText(LoginActivity.this, "Login Failed, Please Try Again", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
     }
     //send the user to the logged in screen view
     private void sendUserToLogin(){
-        Intent intent = new Intent(LoginActivity.this, testActivity.class);
+        Intent intent = new Intent(LoginActivity.this, CustomerHomePage.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

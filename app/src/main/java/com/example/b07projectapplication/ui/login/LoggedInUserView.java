@@ -29,7 +29,7 @@ class LoggedInUserView {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.customer_account_activity);
+            setContentView(R.layout.activity_create_account_page);
             // Get the Intent that started this activity and extract the string
             Intent intent = getIntent();
 

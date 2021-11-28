@@ -10,10 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07ProjectApplication">
         <activity
-            android:name=".ViewStores"
+            android:name=".CustomerHomePage"
+            android:exported="false"/>
+
+        <activity
+            android:name=".Customer_ViewStores"
             android:exported="false">
             <!--android:exported="true">
-            // Testing ViewStores
+            // Testing Customer_ViewStores
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,10 +39,6 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity
-            android:name=".ui.login.testActivity"
-            android:exported="false" />
-        <activity
             android:name=".NewAccountActivity"
             android:exported="false" />
         <activity
