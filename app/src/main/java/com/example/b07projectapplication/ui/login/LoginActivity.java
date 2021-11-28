@@ -26,12 +26,19 @@ import android.widget.Toast;
 
 import com.example.b07projectapplication.CustomerAccountActivity;
 import com.example.b07projectapplication.R;
+import com.example.b07projectapplication.StoreOwnerHomepage;
 import com.example.b07projectapplication.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,6 +50,9 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_login;
     private FirebaseAuth auth;
     private FirebaseUser user;
+    private DatabaseReference ref;
+    private boolean is_user;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -146,6 +156,31 @@ public class LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
+        ref = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String newc = snapshot.child("ownerCheck").getValue().toString();
+                System.out.println(newc);
+                if (newc.equals("true")){
+                    is_user = false;
+                }
+                else{
+                    is_user = true;
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,6 +188,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     public void login(){
         String email = input_email.getText().toString();
@@ -163,9 +200,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    sendUserToLogin();
-                    Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                    if (is_user) {
+                        sendUserToLogin();
+                        Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else{
+                        sendUserToOwner();
+                    }
                 }
+
             }
         });
 
@@ -176,6 +220,14 @@ public class LoginActivity extends AppCompatActivity {
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
+    private void sendUserToOwner(){
+        Intent intent = new Intent(LoginActivity.this, StoreOwnerHomepage.class);
+        intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
+    }
+
 
 
     private void updateUiWithUser(LoggedInUserView model) {
