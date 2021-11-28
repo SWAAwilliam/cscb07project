@@ -9,12 +9,12 @@ public class StoreOwner extends Person{
     public StoreOwner(){
     }
 
-    public StoreOwner(String userUID, String firstName, String lastName, String storeName){
-        super(userUID, firstName, lastName);
+    public StoreOwner(String userUID, String firstName, String lastName, String storeName, boolean isOwner){
+        super(userUID, firstName, lastName, isOwner);
         this.storeName = storeName;
     }
 
-    public void setStoreName(String storeName){this.storeName = storeName;}
-
+    public void setStoreName(String storeName) { this.storeName = storeName; }
+    public String getStoreName() { return this.storeName; }
 
 }
