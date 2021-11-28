@@ -161,15 +161,15 @@ public class LoginActivity extends AppCompatActivity {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String newc = snapshot.child("ownerCheck").getValue().toString();
-                System.out.println(newc);
-                if (newc.equals("true")){
-                    is_user = false;
+                if ( snapshot.exists() ) {
+                    String newc = snapshot.child("ownerCheck").getValue().toString();
+                    System.out.println(newc);
+                    if (newc.equals("true")) {
+                        is_user = false;
+                    } else {
+                        is_user = true;
+                    }
                 }
-                else{
-                    is_user = true;
-                }
-
 
             }
 
@@ -178,7 +178,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         btn_login.setOnClickListener(new View.OnClickListener() {

@@ -22,7 +22,8 @@
         </activity>
         <activity
             android:name=".StoreOwner_ViewProducts"
-            android:exported="false"></activity>
+            android:exported="false">
+        </activity>
         <activity
             android:name=".StoreOwnerHomepage"
             android:exported="false">
