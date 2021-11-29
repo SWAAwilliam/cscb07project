@@ -150,28 +150,29 @@ public class LoginActivity extends AppCompatActivity {
 
         if (user != null){
             ref = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
-        }
-
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if ( snapshot.exists() ) {
-                    String newc = snapshot.child("ownerCheck").getValue().toString();
-                    System.out.println(newc);
-                    if (newc.equals("true")) {
-                        is_user = false;
-                    } else {
-                        is_user = true;
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if ( snapshot.exists() ) {
+                        String newc = snapshot.child("ownerCheck").getValue().toString();
+                        System.out.println(newc);
+                        if (newc.equals("true")) {
+                            is_user = false;
+                        } else {
+                            is_user = true;
+                        }
                     }
+
                 }
 
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        }
 
-            }
-        });
+
 
 
         btn_login.setOnClickListener(new View.OnClickListener() {
