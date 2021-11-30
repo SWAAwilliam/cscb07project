@@ -10,24 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07ProjectApplication">
         <activity
+            android:name=".StoreOwner_AddNewProduct"
+            android:exported="false" />
+        <activity
             android:name=".CustomerHomePage"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".Customer_ViewStores"
             android:exported="false">
-            <!--android:exported="true">
+
+            <!--
+            android:exported="true">
             // Testing Customer_ViewStores
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".StoreOwner_ViewProducts"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".StoreOwnerHomepage"
             android:exported="false">
@@ -39,8 +43,6 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-            android:name=".NewAccountActivity"
-            android:exported="false" />
         <activity
             android:name=".CustomerAccountActivity"
             android:exported="false" />

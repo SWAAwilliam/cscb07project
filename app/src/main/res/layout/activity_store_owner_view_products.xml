@@ -25,7 +25,7 @@
         android:drawSelectorOnTop="false" />
 
     <Button
-        android:id="@+id/btnAddProduct"
+        android:id="@+id/btnAddNewProduct"
         android:layout_width="fill_parent"
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"

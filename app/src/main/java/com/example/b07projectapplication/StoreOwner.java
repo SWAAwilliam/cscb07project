@@ -19,18 +19,27 @@ public class StoreOwner extends Person{
     public void setStoreName(String storeName) { this.storeName = storeName; }
     public String getStoreName() { return this.storeName; }
 
-    public void addProduct(Product product){
-        //Add a product
+    public boolean addProduct(Product product){
+        //Add a product, returns true on success, false if duplicate
+        if (products.contains(product)){
+            return false;
+        }
         products.add(product);
+        return true;
     }
 
     public HashSet<Product> getProducts(){
         //Return a HashSet of Products
-        return null;
+        return this.products;
     }
 
-    public void removeProduct(){
-        //Remove a product
+    public boolean removeProduct(Product product){
+        //Remove a product, returns true on success, false if product does not exist
+        if ( !products.contains(product) ){
+            return false;
+        }
+        products.remove(product);
+        return true;
     }
 
 }

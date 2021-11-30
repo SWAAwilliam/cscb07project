@@ -38,7 +38,6 @@
         android:layout_height="41dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/roboto_bold"
-        android:text="Annabellemarie"
         android:textColor="#332D2D"
         android:textSize="28sp"
         android:textStyle="bold"
