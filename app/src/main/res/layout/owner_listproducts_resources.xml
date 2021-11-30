@@ -6,19 +6,21 @@
 
     <TextView
         android:id="@+id/listViewText1"
+        android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
         android:textColor="#282A2B"
-        android:textSize="18sp"
+        android:textSize="20sp"
         />
 
     <TextView
         android:id="@+id/listViewText2"
+        android:layout_marginHorizontal="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
-        android:textColor="#282A2B"
+        android:textColor="#50D300"
         android:textSize="15sp"
         />
 

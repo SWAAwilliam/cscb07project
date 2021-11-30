@@ -14,7 +14,7 @@
         android:fontFamily="@font/roboto_bold"
         android:gravity="center"
         android:text="Viewing all products of "
-        android:textColor="#282A2B"
+        android:textColor="#7C8387"
         android:textSize="18sp" />
 
     <ListView
