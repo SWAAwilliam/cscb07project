@@ -14,6 +14,16 @@ public class Product {
         this.price = price;
     }
 
+    public String getName() { return name; }
+    public double getPrice() {
+        return ( Math.round(price * 100.0)/100.0 );
+    }
+    public String getPriceString() {
+        return ("$" + String.valueOf( Math.round(price * 100.0)/100.0 ));
+    }
+    public void setName(String name) { this.name = name; }
+    public void setName(double price) { this.price = price; }
+
     @Override
     public int hashCode() {
         return Objects.hash(name, price);

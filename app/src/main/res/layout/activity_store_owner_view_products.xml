@@ -18,10 +18,10 @@
         android:textSize="18sp" />
 
     <ListView
-        android:id="@android:id/list"
-        android:layout_below="@id/textViewProducts"
+        android:id="@+id/productList"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_below="@id/textViewProducts"
         android:drawSelectorOnTop="false" />
 
     <Button
