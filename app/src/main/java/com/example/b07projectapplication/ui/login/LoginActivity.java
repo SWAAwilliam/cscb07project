@@ -133,7 +133,8 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                if (actionId == EditorInfo.IME_ACTION_DONE ||
+                        event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                     login();
                 }
                 return false;
