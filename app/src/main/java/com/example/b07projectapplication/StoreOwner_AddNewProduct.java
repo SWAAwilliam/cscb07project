@@ -36,15 +36,6 @@ public class StoreOwner_AddNewProduct extends AppCompatActivity {
         productName = findViewById(R.id.editProductName);
         productPrice = findViewById(R.id.editProductPrice);
 
-//        productName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-//                boolean handled = false;
-//                if (actionId == EditorInfo.IME_ACTION_GO){
-//
-//                }
-//            }
-//        });
     }
 
 
