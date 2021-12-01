@@ -22,6 +22,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class CustomerAccountActivity extends AppCompatActivity {
 
     private EditText input_email;
@@ -81,10 +83,10 @@ public class CustomerAccountActivity extends AppCompatActivity {
     }
 
     private void authentication(){
-        String email = input_email.getText().toString();
-        String firstName = input_firstName.getText().toString();
-        String lastName = input_lastName.getText().toString();
-        String password = input_password.getText().toString();
+        String email = input_email.getText().toString().trim();
+        String firstName = input_firstName.getText().toString().trim();
+        String lastName = input_lastName.getText().toString().trim();
+        String password = input_password.getText().toString().trim();
 
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -102,16 +104,23 @@ public class CustomerAccountActivity extends AppCompatActivity {
 
     private void createUser(String firstName, String lastName, String userUID){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        String storeName = input_storeName.getText().toString();
+        String storeName = input_storeName.getText().toString().trim();
 
         if (ownerCheck){
             //USER IS AN OWNER
+
+            //Firebase does not allow empty ArrayLists, so create a placeholder to solve this
+            ArrayList<Product> placeHolderProducts = new ArrayList<>();
+            Product placeHolderProduct = new Product("Add a new product!", 0);
+            placeHolderProducts.add(placeHolderProduct);
+
             StoreOwner owner = new StoreOwner();
             owner.setUserUID( userUID );
             owner.setFirstName( firstName );
             owner.setLastName( lastName );
             owner.setOwnerCheck( true );
             owner.setStoreName( storeName );
+            owner.setProducts(placeHolderProducts);
             ref.child("users").child(user.getUid()).setValue(owner);
         }
         else{

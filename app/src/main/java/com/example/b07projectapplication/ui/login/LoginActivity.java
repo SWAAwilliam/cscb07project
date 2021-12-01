@@ -149,29 +149,30 @@ public class LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
-        if (user != null){
-            ref = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
-            ref.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if ( snapshot.exists() ) {
-                        String newc = snapshot.child("ownerCheck").getValue().toString();
-                        System.out.println(newc);
-                        if (newc.equals("true")) {
-                            is_user = false;
-                        } else {
-                            is_user = true;
-                        }
+        String userUID = user.getUid();
+
+        ref = FirebaseDatabase.getInstance().getReference("users").child(userUID);
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if ( snapshot.exists() ) {
+                    String newc = snapshot.child("ownerCheck").getValue().toString();
+                    System.out.println(newc);
+                    if (newc.equals("true")) {
+                        is_user = false;
+                    } else {
+                        is_user = true;
                     }
-
                 }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+            }
 
-                }
-            });
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
 
 

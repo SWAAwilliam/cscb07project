@@ -14,18 +14,18 @@
         android:fontFamily="@font/roboto_bold"
         android:gravity="center"
         android:text="Viewing all products of "
-        android:textColor="#282A2B"
+        android:textColor="#7C8387"
         android:textSize="18sp" />
 
     <ListView
-        android:id="@android:id/list"
-        android:layout_below="@id/textViewProducts"
+        android:id="@+id/productList"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_below="@id/textViewProducts"
         android:drawSelectorOnTop="false" />
 
     <Button
-        android:id="@+id/btnAddProduct"
+        android:id="@+id/btnAddNewProduct"
         android:layout_width="fill_parent"
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
@@ -33,6 +33,7 @@
         android:layout_marginBottom="10dp"
         android:backgroundTint="@android:color/holo_blue_dark"
         android:fontFamily="@font/roboto_bold"
+        android:onClick="sentToNewProduct"
         android:text="@string/add_product"
         android:textSize="16sp" />
 
