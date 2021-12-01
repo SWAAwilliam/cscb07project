@@ -90,6 +90,7 @@
         android:layout_marginBottom="60dp"
         android:backgroundTint="@android:color/holo_blue_dark"
         android:fontFamily="@font/roboto_bold"
+        android:onClick="sentToViewProducts"
         android:text="@string/add_product"
         android:textSize="18sp" />
 

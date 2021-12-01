@@ -25,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -82,24 +81,12 @@ public class StoreOwner_ViewProducts extends AppCompatActivity {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if ( task.isSuccessful() ) {
 
-                    //                  REMOVE ME AFTER YOU ARE DONE!!!!!!!!
-                    //TESTING CODE
-                    HashSet<Product> productSet = new HashSet<>();
-                    Product p1 = new Product("Product 1", 5.00);
-                    Product p2 = new Product("Product 2", 16.32);
-                    Product p3 = new Product("Product 3", 1.69);
-                    productSet.add(p1);
-                    productSet.add(p2);
-                    productSet.add(p3);
-                    //END OF TESTING CODE
-
-
                     owner = task.getResult().getValue(StoreOwner.class);
                     TextView tv = findViewById(R.id.textViewProducts);
                     tv.setText("Viewing all products of " + owner.getStoreName());
 
 
-                    //HashSet<Product> productSet = owner.getProducts();
+                    ArrayList<Product> productSet = owner.getProducts();
                     HashMap<String, String> productMap = new HashMap<>();
                     ListView list = (ListView) findViewById(R.id.productList);
 

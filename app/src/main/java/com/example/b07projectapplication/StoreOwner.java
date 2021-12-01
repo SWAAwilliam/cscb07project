@@ -1,11 +1,11 @@
 package com.example.b07projectapplication;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public class StoreOwner extends Person{
     //need a way to store all the orders
     String storeName;
-    HashSet<Product> products;
+    ArrayList<Product> products;
 
 
     public StoreOwner(){
@@ -18,7 +18,15 @@ public class StoreOwner extends Person{
 
     public void setStoreName(String storeName) { this.storeName = storeName; }
     public String getStoreName() { return this.storeName; }
-    public void initializeProductList() {this.products = new HashSet<Product>();}
+    public void setProducts(ArrayList<Product> products){
+        this.products = new ArrayList<Product>();
+        for (Product product: products){
+            this.products.add(product);
+        }
+    }
+    public ArrayList<Product> getProducts(){
+        return new ArrayList<Product>(products);
+    }
 
     public boolean addProduct(Product product){
         //Add a product, returns true on success, false if duplicate
@@ -27,11 +35,6 @@ public class StoreOwner extends Person{
         }
         products.add(product);
         return true;
-    }
-
-    public HashSet<Product> getProducts(){
-        //Return a HashSet of Products
-        return this.products;
     }
 
     public boolean removeProduct(Product product){

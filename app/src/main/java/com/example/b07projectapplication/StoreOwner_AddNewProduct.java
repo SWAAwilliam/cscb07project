@@ -16,7 +16,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+
 
 public class StoreOwner_AddNewProduct extends AppCompatActivity {
 
@@ -31,7 +32,6 @@ public class StoreOwner_AddNewProduct extends AppCompatActivity {
 
         productName = findViewById(R.id.editProductName);
         productPrice = findViewById(R.id.editProductPrice);
-        addProduct();
     }
 
 
@@ -46,22 +46,18 @@ public class StoreOwner_AddNewProduct extends AppCompatActivity {
     private void addProduct(){
 
         String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(userUID);
-        ref.child("products").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
+        ref.child(userUID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
 
                 if ( task.isSuccessful() ){
-                    //READ FROM DATABASE AND CREATE A COPY OF THE HASHSET
+                    //READ FROM DATABASE AND CREATE A COPY OF THE ARRAYLIST
                     StoreOwner owner = task.getResult().getValue(StoreOwner.class);
-                    HashSet<Product> products = new HashSet<>();
-                    for (Product product: owner.getProducts()){
-                        products.add(product);
-                    }
-
+//
                     //CREATE NEW PRODUCT
-                    String newProductName = productName.getText().toString();
-                    String newProductPriceString = productPrice.getText().toString();
+                    String newProductName = productName.getText().toString().trim();
+                    String newProductPriceString = productPrice.getText().toString().trim();
                     double newProductPrice = Double.parseDouble(newProductPriceString);
 
                     Product newProduct = new Product();
@@ -70,8 +66,13 @@ public class StoreOwner_AddNewProduct extends AppCompatActivity {
 
 
                     //ADD NEW PRODUCT AND UPDATE THE DATABASE
-                    products.add(newProduct);
-                    ref.setValue(products);
+                    owner.addProduct(newProduct);
+                    //Remove the placeholder product created on account creation
+                    Product placeHolderProduct = new Product("Add a new product!", 0);
+                    if (owner.products.contains(placeHolderProduct)) {
+                        owner.removeProduct(placeHolderProduct);
+                    }
+                    ref.child(userUID).setValue(owner);
 
                 }
             }

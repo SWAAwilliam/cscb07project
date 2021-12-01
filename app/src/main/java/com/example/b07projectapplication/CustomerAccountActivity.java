@@ -22,6 +22,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class CustomerAccountActivity extends AppCompatActivity {
 
     private EditText input_email;
@@ -106,13 +108,19 @@ public class CustomerAccountActivity extends AppCompatActivity {
 
         if (ownerCheck){
             //USER IS AN OWNER
+
+            //Firebase does not allow empty ArrayLists, so create a placeholder to solve this
+            ArrayList<Product> placeHolderProducts = new ArrayList<>();
+            Product placeHolderProduct = new Product("Add a new product!", 0);
+            placeHolderProducts.add(placeHolderProduct);
+
             StoreOwner owner = new StoreOwner();
             owner.setUserUID( userUID );
             owner.setFirstName( firstName );
             owner.setLastName( lastName );
             owner.setOwnerCheck( true );
             owner.setStoreName( storeName );
-            owner.initializeProductList();
+            owner.setProducts(placeHolderProducts);
             ref.child("users").child(user.getUid()).setValue(owner);
         }
         else{
