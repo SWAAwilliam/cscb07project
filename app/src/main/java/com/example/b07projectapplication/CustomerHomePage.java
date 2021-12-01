@@ -19,7 +19,7 @@ public class CustomerHomePage extends AppCompatActivity {
 
 
     public void sendToViewStores(View view){
-        Intent intent = new Intent(CustomerHomePage.this, Customer_ViewStores.class);
+        Intent intent = new Intent(CustomerHomePage.this, Customer_ViewMyStores.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         ImageButton button = (ImageButton) findViewById(R.id.btnViewStoresCustomer);
         startActivity(intent);

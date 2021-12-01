@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07ProjectApplication">
         <activity
+            android:name=".Customer_ViewProducts"
+            android:exported="false" />
+        <activity
+            android:name=".Customer_ViewMyStores"
+            android:exported="false" />
+        <activity
             android:name=".StoreOwner_AddNewProduct"
             android:exported="false" />
         <activity
@@ -31,7 +37,7 @@
         </activity>
         <activity
             android:name=".StoreOwner_ViewProducts"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".StoreOwnerHomepage"
             android:exported="false">
