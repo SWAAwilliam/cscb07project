@@ -1,0 +1,78 @@
+package com.example.b07projectapplication;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
+import com.example.b07projectapplication.ui.login.LoginActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+public class Customer_ViewMyStores extends AppCompatActivity {
+    RecyclerView recyclerView;
+    DatabaseReference ref;
+    StoreAdapter adapter;
+    ArrayList<StoreOwner> list;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_customer_view_my_stores);
+        getSupportActionBar().hide();
+
+
+        recyclerView = findViewById(R.id.stores_view);
+        ref = FirebaseDatabase.getInstance().getReference("users");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        list = new ArrayList<>();
+        adapter = new StoreAdapter(this, list);
+        recyclerView.setAdapter(adapter);
+
+        adapter.setRecyclerViewClickListener(new StoreAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(int position) {
+                //pass the id of the clicked store
+                String id = list.get(position).getUserUID();
+                //System.out.println(id);
+                sendToProducts(id);
+            }
+        });
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot data: snapshot.getChildren()){
+                    StoreOwner o = data.getValue(StoreOwner.class);
+                    if (o.isOwner){
+                        System.out.println(o.getStoreName());
+                        list.add(o);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    private void sendToProducts(String id){
+        Intent intent = new Intent(Customer_ViewMyStores.this, Customer_ViewProducts.class);
+        intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("userid",id);
+        startActivity(intent);
+    }
+}

@@ -8,6 +8,8 @@ public class StoreOwner extends Person{
     ArrayList<Product> products;
 
 
+
+
     public StoreOwner(){
     }
 
