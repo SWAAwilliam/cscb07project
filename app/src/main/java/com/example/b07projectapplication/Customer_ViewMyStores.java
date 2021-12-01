@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.b07projectapplication.ui.login.LoginActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,22 +53,38 @@ public class Customer_ViewMyStores extends AppCompatActivity {
             }
         });
 
+        updateList();
+
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot data: snapshot.getChildren()){
-                    StoreOwner o = data.getValue(StoreOwner.class);
-                    if (o.isOwner){
-                        System.out.println(o.getStoreName());
-                        list.add(o);
-                    }
-                }
-                adapter.notifyDataSetChanged();
+                updateList();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+    }
+
+    private void updateList(){
+        ref = FirebaseDatabase.getInstance().getReference("users");
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()){
+                    list.clear();
+                    for (DataSnapshot data: task.getResult().getChildren()){
+                        StoreOwner o = data.getValue(StoreOwner.class);
+                        if (o.isOwner){
+                            System.out.println(o.getStoreName());
+                            list.add(o);
+                        }
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
     }
 
     private void sendToProducts(String id){
