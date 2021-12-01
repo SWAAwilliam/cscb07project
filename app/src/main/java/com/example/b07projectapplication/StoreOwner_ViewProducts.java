@@ -3,8 +3,10 @@ package com.example.b07projectapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.renderscript.Sampler;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -64,6 +66,11 @@ public class StoreOwner_ViewProducts extends AppCompatActivity {
         updateListView();
     }
 
+    public void sentToNewProduct(View view){
+        Intent intent = new Intent(StoreOwner_ViewProducts.this, StoreOwner_AddNewProduct.class);
+        intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 
 
     public void updateListView(){

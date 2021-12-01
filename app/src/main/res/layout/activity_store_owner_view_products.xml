@@ -33,6 +33,7 @@
         android:layout_marginBottom="10dp"
         android:backgroundTint="@android:color/holo_blue_dark"
         android:fontFamily="@font/roboto_bold"
+        android:onClick="sentToNewProduct"
         android:text="@string/add_product"
         android:textSize="16sp" />
 

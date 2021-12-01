@@ -18,6 +18,7 @@ public class StoreOwner extends Person{
 
     public void setStoreName(String storeName) { this.storeName = storeName; }
     public String getStoreName() { return this.storeName; }
+    public void initializeProductList() {this.products = new HashSet<Product>();}
 
     public boolean addProduct(Product product){
         //Add a product, returns true on success, false if duplicate

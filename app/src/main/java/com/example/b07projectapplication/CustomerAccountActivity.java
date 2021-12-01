@@ -81,10 +81,10 @@ public class CustomerAccountActivity extends AppCompatActivity {
     }
 
     private void authentication(){
-        String email = input_email.getText().toString();
-        String firstName = input_firstName.getText().toString();
-        String lastName = input_lastName.getText().toString();
-        String password = input_password.getText().toString();
+        String email = input_email.getText().toString().trim();
+        String firstName = input_firstName.getText().toString().trim();
+        String lastName = input_lastName.getText().toString().trim();
+        String password = input_password.getText().toString().trim();
 
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -102,7 +102,7 @@ public class CustomerAccountActivity extends AppCompatActivity {
 
     private void createUser(String firstName, String lastName, String userUID){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        String storeName = input_storeName.getText().toString();
+        String storeName = input_storeName.getText().toString().trim();
 
         if (ownerCheck){
             //USER IS AN OWNER
@@ -112,6 +112,7 @@ public class CustomerAccountActivity extends AppCompatActivity {
             owner.setLastName( lastName );
             owner.setOwnerCheck( true );
             owner.setStoreName( storeName );
+            owner.initializeProductList();
             ref.child("users").child(user.getUid()).setValue(owner);
         }
         else{

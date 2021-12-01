@@ -22,7 +22,8 @@ public class Product {
         return ("$" + String.valueOf( Math.round(price * 100.0)/100.0 ));
     }
     public void setName(String name) { this.name = name; }
-    public void setName(double price) { this.price = price; }
+    public void setPrice(double price) { this.price = (Math.round(price * 100.0)/100.0); }
+
 
     @Override
     public int hashCode() {

@@ -19,7 +19,6 @@ public class StoreOwnerHomepage extends AppCompatActivity {
     public void openProductPage(View view){
         Intent intent = new Intent(this, StoreOwner_ViewProducts.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
-        Button button = (Button) findViewById(R.id.btnProducts);
         startActivity(intent);
     }
 }
