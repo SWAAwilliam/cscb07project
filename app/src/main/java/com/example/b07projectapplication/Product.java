@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Product {
     String name;
+    String priceString;
     double price;
 
     public Product(){
@@ -12,6 +13,7 @@ public class Product {
     public Product(String name, double price){
         this.name = name;
         this.price = price;
+        this.priceString = "$" + String.valueOf( Math.round(this.price * 100.0)/100.0 );
     }
 
     public String getName() { return name; }
@@ -23,7 +25,7 @@ public class Product {
     }
     public void setName(String name) { this.name = name; }
     public void setPrice(double price) { this.price = (Math.round(price * 100.0)/100.0); }
-
+    public void setPriceString(String priceString) { this.priceString = priceString; }
 
     @Override
     public int hashCode() {

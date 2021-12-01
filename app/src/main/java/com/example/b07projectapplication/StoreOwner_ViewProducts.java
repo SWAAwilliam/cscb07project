@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,7 +44,7 @@ public class StoreOwner_ViewProducts extends AppCompatActivity {
         setContentView(R.layout.activity_store_owner_view_products);
         getSupportActionBar().hide();
 
-        //READ THE CURRENT USER FROM THE DATABASE
+//        //READ THE CURRENT USER FROM THE DATABASE
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
@@ -61,9 +62,11 @@ public class StoreOwner_ViewProducts extends AppCompatActivity {
                 Toast.makeText(StoreOwner_ViewProducts.this, "Database Error!", Toast.LENGTH_SHORT).show();
             }
         };
+        ref.addValueEventListener(listener);
 
         updateListView();
     }
+
 
     public void sentToNewProduct(View view){
         Intent intent = new Intent(StoreOwner_ViewProducts.this, StoreOwner_AddNewProduct.class);
@@ -75,8 +78,8 @@ public class StoreOwner_ViewProducts extends AppCompatActivity {
     public void updateListView(){
         //UPDATE THE LISTVIEW
 
-        DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("users");
-        ref2.child(userUID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+        ref.child(userUID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if ( task.isSuccessful() ) {
