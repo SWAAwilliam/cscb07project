@@ -1,5 +1,6 @@
 package com.example.b07projectapplication;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class Product {
@@ -14,21 +15,25 @@ public class Product {
     public Product(String name, double price){
         this.name = name;
         this.price = price;
-        this.priceString = "$" + String.valueOf( Math.round(this.price * 100.0)/100.0 );
+        this.priceString = String.valueOf( Math.round(this.price * 100.0)/100.0 );
     }
 
     public String getName() { return name; }
     public double getPrice() {
-        return ( Math.round(price * 100.0)/100.0 );
+        return ( Double.parseDouble(priceString) );
     }
     public String getPriceString() {
-        return ("$" + String.valueOf( Math.round(price * 100.0)/100.0 ));
+        return ("$" + this.priceString);
     }
     public int getQuantity() { return this.quantity; }
     public void setName(String name) { this.name = name; }
-    public void setPrice(double price) { this.price = (Math.round(price * 100.0)/100.0); }
-    public void setPriceString(String priceString) { this.priceString = priceString; }
+    public void setPrice(double price) {
+        DecimalFormat decimalFormat = new DecimalFormat("0.##");
+        this.priceString = decimalFormat.format(price);
+        this.price = Double.parseDouble(priceString);
+    }
     public void setQuantity(int quantity) { this.quantity = quantity; }
+
 
     @Override
     public int hashCode() {
