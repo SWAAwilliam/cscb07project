@@ -13,13 +13,13 @@ public class Customer_ViewCart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_view_cart);
 
-        Bundle bundle = getIntent().getExtras();
+        //Bundle bundle = getIntent().getExtras();
 
-        ArrayList<Product> p = (ArrayList<Product>) bundle.get("product");
+        //ArrayList<Product> p = (ArrayList<Product>) bundle.get("product");
 
-        for (Product pro : p){
-            System.out.println("p :" + pro.getName());
-        }
+        //for (Product pro : p){
+        //    System.out.println("p :" + pro.getName());
+        //}
 
 
 
