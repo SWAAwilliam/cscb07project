@@ -24,5 +24,6 @@
     <string name="add_product">Add New Product</string>
 
     <string name="stores">Stores</string>
+    <string name="cart_button">View Cart</string>
 
 </resources>

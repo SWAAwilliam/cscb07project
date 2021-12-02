@@ -7,7 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.example.b07projectapplication.ui.login.LoginActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +28,10 @@ public class Customer_ViewProducts extends AppCompatActivity {
     ProductAdapter adapter;
     ArrayList<Product> list;
 
+    //Keeps all the products that are selected by the customer
+    ArrayList<Product> cartlist;
+    Button viewCart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +43,15 @@ public class Customer_ViewProducts extends AppCompatActivity {
         //System.out.println("asede: " + id);
 
 
+        //open the Cart screen
+        viewCart = findViewById(R.id.view_cart);
+        viewCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendToCart();
+            }
+        });
+
         recyclerView = findViewById(R.id.product_view);
         ref = FirebaseDatabase.getInstance().getReference("users").child(id).child("products");
         recyclerView.setHasFixedSize(true);
@@ -42,6 +60,20 @@ public class Customer_ViewProducts extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new ProductAdapter(this, list);
         recyclerView.setAdapter(adapter);
+
+        cartlist = new ArrayList<>();
+
+        //when the "add to cart button is selected the product is added to the arrayList
+        adapter.setRecyclerViewClickListener(new ProductAdapter.buttonClickListener() {
+            @Override
+            public void onClick(int position) {
+                Product p = list.get(position);
+                cartlist.add(p);
+                //Toast.makeText(Customer_ViewProducts.this, "Product added", Toast.LENGTH_SHORT).show();
+                System.out.println(p.getName());
+
+            }
+        });
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -58,6 +90,18 @@ public class Customer_ViewProducts extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+
+
+
+    }
+
+    private void sendToCart(){
+        Intent intent = new Intent(Customer_ViewProducts.this, Customer_ViewCart.class);
+        intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
+        //pass the arrayList to cart
+        //intent.putExtra("product",cartlist);
+
+        startActivity(intent);
 
     }
     @Override
