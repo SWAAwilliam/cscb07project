@@ -127,4 +127,11 @@ public class StoreOwner_ViewProducts extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent back = new Intent(StoreOwner_ViewProducts.this, StoreOwnerHomepage.class);
+        startActivity(back);
+        finish();
+    }
+
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
@@ -58,5 +59,11 @@ public class Customer_ViewProducts extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public void onBackPressed() {
+        Intent back = new Intent(Customer_ViewProducts.this, Customer_ViewMyStores.class);
+        startActivity(back);
+        finish();
     }
 }

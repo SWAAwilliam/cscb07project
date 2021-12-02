@@ -83,4 +83,12 @@ public class StoreOwner_AddNewProduct extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent back = new Intent(StoreOwner_AddNewProduct.this, StoreOwner_ViewProducts.class);
+        startActivity(back);
+        finish();
+    }
+
 }

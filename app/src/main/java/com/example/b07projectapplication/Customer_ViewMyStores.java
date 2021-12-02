@@ -93,4 +93,12 @@ public class Customer_ViewMyStores extends AppCompatActivity {
         intent.putExtra("userid",id);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent back = new Intent(Customer_ViewMyStores.this, CustomerHomePage.class);
+        startActivity(back);
+        finish();
+    }
+
 }

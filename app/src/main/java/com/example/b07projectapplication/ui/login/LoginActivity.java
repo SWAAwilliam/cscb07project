@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.b07projectapplication.CustomerAccountActivity;
 import com.example.b07projectapplication.CustomerHomePage;
+import com.example.b07projectapplication.Customer_ViewMyStores;
 import com.example.b07projectapplication.R;
 import com.example.b07projectapplication.StoreOwnerHomepage;
 import com.example.b07projectapplication.databinding.ActivityLoginBinding;
@@ -241,6 +242,11 @@ public class LoginActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.ca_button);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
 }

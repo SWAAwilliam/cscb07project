@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.b07projectapplication.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,4 +48,12 @@ public class StoreOwnerHomepage extends AppCompatActivity {
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent back = new Intent(StoreOwnerHomepage.this, LoginActivity.class);
+        startActivity(back);
+        finish();
+    }
+
 }

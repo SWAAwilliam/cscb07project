@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.b07projectapplication.ui.login.LoginActivity;
+
 public class CustomerHomePage extends AppCompatActivity {
 
     @Override
@@ -25,5 +27,11 @@ public class CustomerHomePage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(CustomerHomePage.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
 }
