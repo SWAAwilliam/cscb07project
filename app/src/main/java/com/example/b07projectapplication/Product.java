@@ -6,6 +6,7 @@ public class Product {
     String name;
     String priceString;
     double price;
+    int quantity;
 
     public Product(){
     }
@@ -26,6 +27,7 @@ public class Product {
     public void setName(String name) { this.name = name; }
     public void setPrice(double price) { this.price = (Math.round(price * 100.0)/100.0); }
     public void setPriceString(String priceString) { this.priceString = priceString; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 
     @Override
     public int hashCode() {
