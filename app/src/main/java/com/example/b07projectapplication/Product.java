@@ -24,6 +24,7 @@ public class Product {
     public String getPriceString() {
         return ("$" + String.valueOf( Math.round(price * 100.0)/100.0 ));
     }
+    public int getQuantity() { return this.quantity; }
     public void setName(String name) { this.name = name; }
     public void setPrice(double price) { this.price = (Math.round(price * 100.0)/100.0); }
     public void setPriceString(String priceString) { this.priceString = priceString; }
