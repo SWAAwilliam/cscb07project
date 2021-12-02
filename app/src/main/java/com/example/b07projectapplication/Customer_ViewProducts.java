@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,6 +25,8 @@ public class Customer_ViewProducts extends AppCompatActivity {
     DatabaseReference ref;
     ProductAdapter adapter;
     ArrayList<Product> list;
+    ArrayList<Product> cartlist;
+    Button viewCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,13 @@ public class Customer_ViewProducts extends AppCompatActivity {
         String id = bundle.getString("userid");
         //System.out.println("asede: " + id);
 
+        viewCart = findViewById(R.id.view_cart);
+        viewCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendToCart(cartlist);
+            }
+        });
 
         recyclerView = findViewById(R.id.product_view);
         ref = FirebaseDatabase.getInstance().getReference("users").child(id).child("products");
@@ -42,6 +54,18 @@ public class Customer_ViewProducts extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new ProductAdapter(this, list);
         recyclerView.setAdapter(adapter);
+
+        cartlist = new ArrayList<>();
+
+        adapter.setRecyclerViewClickListener(new ProductAdapter.buttonClickListener() {
+            @Override
+            public void onClick(int position) {
+                Product p = list.get(position);
+                cartlist.add(p);
+                System.out.println(p.getName());
+
+            }
+        });
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -58,6 +82,17 @@ public class Customer_ViewProducts extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+
+
+
+    }
+
+    private void sendToCart(ArrayList<Product> cartlist){
+        Intent intent = new Intent(Customer_ViewProducts.this, Customer_ViewCart.class);
+        intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("product",cartlist);
+
+        startActivity(intent);
 
     }
     @Override
