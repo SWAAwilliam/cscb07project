@@ -48,6 +48,10 @@
             android:name=".StoreOwnerHomepage"
             android:exported="false"/>
 
+        <activity
+            android:name=".StoreOwner_MyProfile"
+            android:exported="false"/>
+
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
 
