@@ -3,11 +3,8 @@ package com.example.b07projectapplication;
 import java.util.ArrayList;
 
 public class StoreOwner extends Person{
-    //need a way to store all the orders
     String storeName;
     ArrayList<Product> products;
-
-
 
 
 

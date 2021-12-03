@@ -44,7 +44,7 @@ public class StoreOwner_ViewProducts extends AppCompatActivity {
         setContentView(R.layout.activity_store_owner_view_products);
         getSupportActionBar().hide();
 
-//        //READ THE CURRENT USER FROM THE DATABASE
+        //READ THE CURRENT USER FROM THE DATABASE
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
