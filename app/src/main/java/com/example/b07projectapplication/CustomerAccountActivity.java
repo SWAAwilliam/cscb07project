@@ -92,10 +92,11 @@ public class CustomerAccountActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    createUser( firstName, lastName, user.getUid() );
-                    sendUser();
-                    Toast.makeText(CustomerAccountActivity.this, "Created New Account Successfully, Please Log In", Toast.LENGTH_SHORT).show();
-
+                    if (user != null) {
+                        createUser(firstName, lastName, user.getUid());
+                        sendUser();
+                        Toast.makeText(CustomerAccountActivity.this, "Created New Account Successfully, Please Log In", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

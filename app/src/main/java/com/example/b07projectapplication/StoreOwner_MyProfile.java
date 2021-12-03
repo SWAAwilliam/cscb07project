@@ -66,4 +66,11 @@ public class StoreOwner_MyProfile extends AppCompatActivity {
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent back = new Intent(StoreOwner_MyProfile.this, StoreOwnerHomepage.class);
+        startActivity(back);
+        finish();
+    }
 }

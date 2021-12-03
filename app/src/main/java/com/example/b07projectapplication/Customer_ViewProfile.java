@@ -68,5 +68,10 @@ public class Customer_ViewProfile extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent back = new Intent(Customer_ViewProfile.this, CustomerHomePage.class);
+        startActivity(back);
+        finish();
+    }
 }

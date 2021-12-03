@@ -117,7 +117,6 @@ public class StoreOwner_ViewProducts extends AppCompatActivity {
                         }
                         list.setAdapter(adapter);
                     }
-
                 }
                 else{
                     Toast.makeText(StoreOwner_ViewProducts.this, "Database error!", Toast.LENGTH_SHORT).show();
