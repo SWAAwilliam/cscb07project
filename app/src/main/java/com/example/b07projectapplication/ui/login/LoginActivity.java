@@ -27,7 +27,9 @@ import android.widget.Toast;
 import com.example.b07projectapplication.CustomerAccountActivity;
 import com.example.b07projectapplication.CustomerHomePage;
 import com.example.b07projectapplication.Customer_ViewMyStores;
+import com.example.b07projectapplication.Person;
 import com.example.b07projectapplication.R;
+import com.example.b07projectapplication.StoreOwner;
 import com.example.b07projectapplication.StoreOwnerHomepage;
 import com.example.b07projectapplication.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -53,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseUser user;
     private DatabaseReference ref;
-    private boolean is_user;
 
 
     @Override
@@ -143,6 +144,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+        //START OF NON-GENERATED CODE
+
         input_email = findViewById(R.id.username);
         input_password = findViewById(R.id.password);
         btn_login = findViewById(R.id.login);
@@ -152,30 +155,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (user != null) {
             String userUID = user.getUid();
-
-            ref = FirebaseDatabase.getInstance().getReference("users").child(userUID);
-            ref.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()) {
-                        String newc = snapshot.child("ownerCheck").getValue().toString();
-                        System.out.println(newc);
-                        if (newc.equals("true")) {
-                            is_user = false;
-                        } else {
-                            is_user = true;
-                        }
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
         }
-
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,21 +168,37 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login(){
         String email = input_email.getText().toString();
-
         String password = input_password.getText().toString();
 
         auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    if (is_user) {
-                        sendUserToLogin();
-                        Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
 
-                    }
-                    else{
-                        sendUserToOwner();
-                    }
+                    FirebaseUser newUser = task.getResult().getUser();
+                    String userUID = newUser.getUid();
+
+                    ref = FirebaseDatabase.getInstance().getReference("users");
+                    ref.child(userUID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            if (task.isSuccessful()){
+                                Person person = task.getResult().getValue(Person.class);
+                                boolean isOwner = person.getOwnerCheck();
+
+                                if ( isOwner ) {
+                                    sendUserToOwner();
+                                    Toast.makeText(LoginActivity.this, "Logged in Successfully AS OWNER", Toast.LENGTH_SHORT).show();
+
+                                }
+                                else{
+                                    sendUserToLogin();
+                                    Toast.makeText(LoginActivity.this, "Logged in Successfully AS USER", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                    });
+
                 }
                 else{
                     Toast.makeText(LoginActivity.this, "Login Failed, Please Try Again", Toast.LENGTH_SHORT).show();
@@ -211,6 +207,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+
     //send the user to the logged in screen view
     private void sendUserToLogin(){
         Intent intent = new Intent(LoginActivity.this, CustomerHomePage.class);
@@ -224,7 +222,6 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-
 
 
     private void updateUiWithUser(LoggedInUserView model) {
