@@ -55,6 +55,11 @@ public class StoreOwnerHomepage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openOrders(View view) {
+        Intent intent = new Intent(this, StoreOwner_ViewOrders.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
         Intent back = new Intent(StoreOwnerHomepage.this, LoginActivity.class);

@@ -53,12 +53,13 @@
         android:orientation="vertical" >
 
         <Button
-            android:layout_marginTop="70dp"
             android:id="@+id/btnOrders"
             android:layout_width="218dp"
             android:layout_height="81dp"
+            android:layout_marginTop="70dp"
             android:backgroundTint="@android:color/holo_blue_dark"
             android:fontFamily="@font/roboto_bold"
+            android:onClick="openOrders"
             android:text="@string/view_orders"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />

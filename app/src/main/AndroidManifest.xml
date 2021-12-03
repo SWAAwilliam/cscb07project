@@ -45,6 +45,9 @@
             android:name=".StoreOwner_ViewProducts"
             android:exported="false" />
         <activity
+            android:name=".StoreOwner_ViewOrders"
+            android:exported="false" />
+        <activity
             android:name=".StoreOwnerHomepage"
             android:exported="false"/>
 
