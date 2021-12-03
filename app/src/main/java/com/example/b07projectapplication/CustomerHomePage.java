@@ -27,6 +27,13 @@ public class CustomerHomePage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void sendToViewProfile(View view){
+        Intent intent = new Intent(CustomerHomePage.this, Customer_ViewProfile.class);
+        intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
+        ImageButton button = (ImageButton) findViewById(R.id.btnViewProfileCustomer);
+        startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(CustomerHomePage.this, LoginActivity.class);

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07ProjectApplication">
         <activity
-            android:name=".StoreOwner_MyProfile"
+            android:name=".Customer_ViewProfile"
             android:exported="false" />
         <activity
             android:name=".Customer_ViewCart"
