@@ -8,6 +8,33 @@ public class Cart {
     StoreOwner storeOwner;
     ArrayList<Product> cartProducts;
 
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public StoreOwner getStoreOwner() {
+        return storeOwner;
+    }
+
+    public void setStoreOwner(StoreOwner storeOwner) {
+        this.storeOwner = storeOwner;
+    }
+
+    public ArrayList<Product> getCartProducts() {
+        return cartProducts;
+    }
+
+    public void setCartProducts(ArrayList<Product> cartProducts) {
+        this.cartProducts = new ArrayList<Product>();
+        for (Product product: cartProducts){
+            this.cartProducts.add(product);
+        }
+    }
+
     //start a new cart
     public Cart(StoreOwner storeOwner){
         this.storeOwner = storeOwner;
@@ -43,21 +70,21 @@ public class Cart {
     //remove specified amount of product from the cart
     public boolean removeFromCart(Product product, int number){
 
-      if(cartProducts.contains(product)){
-          if(product.quantity <= number ){
-              removeFromCart(product);
-          }
-          else {
-              int index = cartProducts.indexOf(product);
-              Product updatedProduct = new Product();
-              Product currentProduct = cartProducts.get(index);
-              updatedProduct.name = currentProduct.getName();
-              updatedProduct.price = currentProduct.getPrice();
-              updatedProduct.priceString = currentProduct.getPriceString();
-              updatedProduct.quantity = currentProduct.quantity - number;
-              cartProducts.set(index, updatedProduct);
-          }
-          return true;
+        if(cartProducts.contains(product)){
+            if(product.quantity <= number ){
+                removeFromCart(product);
+            }
+            else {
+                int index = cartProducts.indexOf(product);
+                Product updatedProduct = new Product();
+                Product currentProduct = cartProducts.get(index);
+                updatedProduct.name = currentProduct.getName();
+                updatedProduct.price = currentProduct.getPrice();
+                updatedProduct.priceString = currentProduct.getPriceString();
+                updatedProduct.quantity = currentProduct.quantity - number;
+                cartProducts.set(index, updatedProduct);
+            }
+            return true;
         }
         else {
             return false;

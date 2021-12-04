@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Customer_ViewProducts extends AppCompatActivity {
@@ -29,7 +30,8 @@ public class Customer_ViewProducts extends AppCompatActivity {
     ArrayList<Product> list;
 
     //Keeps all the products that are selected by the customer
-    ArrayList<Product> cartlist;
+    //ArrayList<Product> cartlist;
+    ArrayList<Integer> productIndex;
     Button viewCart;
 
     @Override
@@ -41,7 +43,7 @@ public class Customer_ViewProducts extends AppCompatActivity {
         //get the userId of the clicked store
         String id = bundle.getString("userid");
         //System.out.println("asede: " + id);
-
+        productIndex = new ArrayList<>();
 
         //open the Cart screen
         viewCart = findViewById(R.id.view_cart);
@@ -61,17 +63,13 @@ public class Customer_ViewProducts extends AppCompatActivity {
         adapter = new ProductAdapter(this, list);
         recyclerView.setAdapter(adapter);
 
-        cartlist = new ArrayList<>();
 
-        //when the "add to cart button is selected the product is added to the arrayList
         adapter.setRecyclerViewClickListener(new ProductAdapter.buttonClickListener() {
             @Override
             public void onClick(int position) {
                 Product p = list.get(position);
-                cartlist.add(p);
+                productIndex.add(position);
                 //Toast.makeText(Customer_ViewProducts.this, "Product added", Toast.LENGTH_SHORT).show();
-                System.out.println(p.getName());
-
             }
         });
 
@@ -96,13 +94,15 @@ public class Customer_ViewProducts extends AppCompatActivity {
     }
 
     private void sendToCart(){
+        //pass the arrayList to cart
         Intent intent = new Intent(Customer_ViewProducts.this, Customer_ViewCart.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
-        //pass the arrayList to cart
-        //intent.putExtra("product",cartlist);
+        intent.putExtra("BUNDLE",productIndex);
 
+        Bundle bundle = getIntent().getExtras();
+        String id = bundle.getString("userid");
+        intent.putExtra("userid",id);
         startActivity(intent);
-
     }
     @Override
     public void onBackPressed() {
