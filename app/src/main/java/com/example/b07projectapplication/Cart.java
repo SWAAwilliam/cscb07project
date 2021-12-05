@@ -1,28 +1,23 @@
 package com.example.b07projectapplication;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Cart {
+    String ownerUID;
     String storeName;
-    StoreOwner storeOwner;
     ArrayList<Product> cartProducts;
 
-    public String getStoreName() {
-        return storeName;
-    }
 
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
-    }
+    public String getOwnerUID() { return ownerUID; }
 
-    public StoreOwner getStoreOwner() {
-        return storeOwner;
-    }
+    public void setOwnerUID(String ownerUID) { this.ownerUID = ownerUID;}
 
-    public void setStoreOwner(StoreOwner storeOwner) {
-        this.storeOwner = storeOwner;
-    }
+    public String getStoreName() { return storeName; }
+
+    public void setStoreName(String storeName) { this.storeName = storeName; }
 
     public ArrayList<Product> getCartProducts() {
         return cartProducts;
@@ -34,13 +29,15 @@ public class Cart {
             this.cartProducts.add(product);
         }
     }
+    public void Cart(){
 
-    //start a new cart
-    public Cart(StoreOwner storeOwner){
-        this.storeOwner = storeOwner;
-        storeName = storeOwner.storeName;
-        cartProducts = new ArrayList<Product>();
     }
+    //start a new cart
+    //public Cart(StoreOwner storeOwner){
+      //  this.storeOwner = storeOwner;
+        //storeName = storeOwner.storeName;
+        //cartProducts = new ArrayList<Product>();
+    //}
 
     public void addToCart(Product product){
         if (cartProducts.contains(product)){
@@ -101,7 +98,7 @@ public class Cart {
 
     @Override
     public int hashCode() {
-        return Objects.hash(storeName, storeOwner, cartProducts);
+        return Objects.hash(ownerUID, cartProducts, storeName);
     }
 
     @Override
@@ -114,7 +111,7 @@ public class Cart {
             return false;
 
         Cart other = (Cart) obj;
-        return Objects.equals(storeName, other.storeName) && Objects.equals(storeOwner, other.storeOwner) &&
-                Objects.equals(cartProducts, other.cartProducts);
+        return Objects.equals(ownerUID, other.ownerUID) &&
+                Objects.equals(cartProducts, other.cartProducts) && Objects.equals(storeName, other.storeName);
     }
 }

@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -29,9 +31,10 @@ public class Customer_ViewProducts extends AppCompatActivity {
     ProductAdapter adapter;
     ArrayList<Product> list;
 
-    //Keeps all the products that are selected by the customer
-    //ArrayList<Product> cartlist;
+    //Keeps all the product keys that are selected by the customer
     ArrayList<Integer> productIndex;
+    //Keeps all the product quantities that are selected by the customer
+    ArrayList<Integer> productQuantity;
     Button viewCart;
 
     @Override
@@ -44,7 +47,7 @@ public class Customer_ViewProducts extends AppCompatActivity {
         String id = bundle.getString("userid");
         //System.out.println("asede: " + id);
         productIndex = new ArrayList<>();
-
+        productQuantity = new ArrayList<>();
         //open the Cart screen
         viewCart = findViewById(R.id.view_cart);
         viewCart.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +72,7 @@ public class Customer_ViewProducts extends AppCompatActivity {
             public void onClick(int position) {
                 Product p = list.get(position);
                 productIndex.add(position);
+                productQuantity.add(p.getQuantity());
                 //Toast.makeText(Customer_ViewProducts.this, "Product added", Toast.LENGTH_SHORT).show();
             }
         });
@@ -98,6 +102,7 @@ public class Customer_ViewProducts extends AppCompatActivity {
         Intent intent = new Intent(Customer_ViewProducts.this, Customer_ViewCart.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("BUNDLE",productIndex);
+        intent.putExtra("BUNDLE2",productQuantity);
 
         Bundle bundle = getIntent().getExtras();
         String id = bundle.getString("userid");

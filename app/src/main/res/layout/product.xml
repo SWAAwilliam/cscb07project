@@ -25,6 +25,13 @@
         android:textColor="#50D300"
         android:textSize="16sp" />
 
+    <EditText
+        android:id="@+id/product_quantity_getter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:inputType="number" />
+
     <Button
         android:id="@+id/cart_button"
         android:layout_width="wrap_content"
@@ -34,4 +41,5 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:textSize="16sp" />
+
 </LinearLayout>

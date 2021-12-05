@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.13802083333333334" />
         <entry key="..\:/Users/William/Documents/B07ProjectApplication/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/William/Documents/B07ProjectBranchTest/app/src/main/res/layout/activity_customer_account_acitivity.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/William/Documents/B07ProjectBranchTest/app/src/main/res/layout/activity_login.xml" value="0.34057971014492755" />
@@ -53,6 +54,9 @@
         <entry key="..\:/Users/shrut/OneDrive/Desktop/UTSC/CSCB07H3/GitHub/cscb07project/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/shrut/OneDrive/Desktop/UTSC/CSCB07H3/GitHub/cscb07project/app/src/main/res/layout/activity_store_owner_homepage.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/activity_customer_view_cart.xml" value="0.297270955165692" />
+        <entry key="app/src/main/res/layout/activity_customer_view_products.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/cart.xml" value="0.75" />
+        <entry key="app/src/main/res/layout/product.xml" value="0.24322916666666666" />
       </map>
     </option>
   </component>
