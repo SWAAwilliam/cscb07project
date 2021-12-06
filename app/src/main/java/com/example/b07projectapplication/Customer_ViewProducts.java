@@ -71,8 +71,31 @@ public class Customer_ViewProducts extends AppCompatActivity {
             @Override
             public void onClick(int position) {
                 Product p = list.get(position);
-                productIndex.add(position);
-                productQuantity.add(p.getQuantity());
+                Log.d("DEBUG", "onClick: "+String.valueOf(p.getQuantity())+ " " +p.getName());
+                if(productIndex.contains(position)){
+                    //Log.d("contains","Old quantity is "+String.valueOf(productQuantity.get(productIndex.indexOf(position))));
+                    if(p.getQuantity() == 0){
+                      //  Log.d("0quantity---", "onClick: "+String.valueOf(p.getQuantity())+ " " +p.getName());
+                        productQuantity.set(productIndex.indexOf(position),1);
+                    }
+                    else{
+                        productQuantity.set(productIndex.indexOf(position),p.getQuantity());
+                      //  Log.d("1+Quantity---", "onClick: "+String.valueOf(p.getQuantity())+ " " +p.getName());
+                    }
+                    //Log.d("contains", "Set new quantity to "+String.valueOf(productQuantity.get(productIndex.indexOf(position))));
+                }
+                else{
+                    productIndex.add(position);
+                    if(p.getQuantity() == 0){
+                       // Log.d("0quantity", "onClick: "+String.valueOf(p.getQuantity())+ " " +p.getName());
+                        productQuantity.add(1);
+                    }
+                    else{
+                       // Log.d("1+quantity", "onClick: "+String.valueOf(p.getQuantity())+ " " +p.getName());
+                        productQuantity.add(p.getQuantity());
+                    };
+                }
+                   // Log.d("new","AddedNewPosition "+position + "AddedNewQuantity" + p.getQuantity());}
                 //Toast.makeText(Customer_ViewProducts.this, "Product added", Toast.LENGTH_SHORT).show();
             }
         });
