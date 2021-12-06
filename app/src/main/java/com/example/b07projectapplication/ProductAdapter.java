@@ -3,6 +3,7 @@ package com.example.b07projectapplication;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,18 +53,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             @Override
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
-                list.get(position).setQuantity(Integer.parseInt(s.toString()));
+                if(s.length() != 0){
+                    p.setQuantity(Integer.parseInt(s.toString()));
+                }
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
-                list.get(position).setQuantity(1);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
 

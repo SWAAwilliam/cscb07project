@@ -8,14 +8,17 @@
 
     <TextView
         android:id="@+id/cart_total"
-        android:layout_width="251dp"
-        android:layout_height="52dp"
+        android:layout_width="229dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="12dp"
         android:text="Cart Total:"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/add_to_order"
+        app:layout_constraintStart_toEndOf="@+id/save_cart"
         app:layout_constraintTop_toBottomOf="@+id/cart_view" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -29,4 +32,26 @@
         app:layout_constraintVertical_bias="0.496">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/save_cart"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:text="save"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cart_view" />
+
+    <Button
+        android:id="@+id/add_to_order"
+        android:layout_width="99dp"
+        android:layout_height="51dp"
+        android:text="Add to Order"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cart_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>
