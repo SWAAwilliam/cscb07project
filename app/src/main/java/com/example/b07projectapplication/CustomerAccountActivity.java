@@ -112,7 +112,7 @@ public class CustomerAccountActivity extends AppCompatActivity {
 
             //Firebase does not allow empty ArrayLists, so create a placeholder to solve this
             ArrayList<Product> placeHolderProducts = new ArrayList<>();
-            Product placeHolderProduct = new Product("Add a new product!", 0);
+            Product placeHolderProduct = new Product("No products added!", 0);
             placeHolderProducts.add(placeHolderProduct);
 
             StoreOwner owner = new StoreOwner();
