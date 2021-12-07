@@ -49,6 +49,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     private FirebaseUser user;
     private DatabaseReference ref;
 
+    LoginContract.Presenter presenter;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,31 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
 
+        LoginContract.Model model = new LoginModel();
+        presenter = new LoginPresenter(this, model);
+
+
+        input_email = findViewById(R.id.username);
+        input_password = findViewById(R.id.password);
+        btn_login = findViewById(R.id.login);
+
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+
+        if (user != null) {
+            String userUID = user.getUid();
+        }
+
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
+
+
+
+        /**--------------------------------------------START OF AUTO-GENERATED CODE------------------------------------------------------------*/
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -66,8 +93,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
-
-
 
         loginViewModelAUTOGEN.getLoginFormState().observe(this, new Observer<LoginFormState_AUTOGEN>() {
             @Override
@@ -116,28 +141,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
                 return false;
             }
         });
+        /**----------------------------------------------END OF AUTO-GENERATED CODE-----------------------------------------------------------------------*/
 
-
-        //START OF NON-GENERATED CODE
-
-        input_email = findViewById(R.id.username);
-        input_password = findViewById(R.id.password);
-        btn_login = findViewById(R.id.login);
-
-        auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
-
-        if (user != null) {
-            String userUID = user.getUid();
-        }
-
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login();
-            }
-        });
     }
+
+
 
 
     public void login(){
@@ -166,7 +174,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
                                 }
                                 else{
-                                    sendUserToLogin();
+                                    sendUserToCustomer();
                                     Toast.makeText(LoginActivity.this, "Logged in Successfully AS USER", Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -183,7 +191,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     public void validateLogin(View view){
-        //presenter.validateAccount();
+        presenter.checkInput();
     }
 
     @Override
@@ -199,7 +207,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    public void sendUserToLogin(){
+    public void sendUserToCustomer(){
         Intent intent = new Intent(LoginActivity.this, CustomerHomePage.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -211,6 +219,21 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void displayMessage(boolean isOwner){
+        if ( isOwner ){
+            Toast.makeText(LoginActivity.this, "Logged in Successfully AS OWNER", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(LoginActivity.this, "Logged in Successfully AS CUSTOMER", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void displayError(String error){
+        Toast.makeText(LoginActivity.this, error, Toast.LENGTH_SHORT).show();
     }
 
 
