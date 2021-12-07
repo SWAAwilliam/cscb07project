@@ -94,6 +94,7 @@
         android:id="@+id/btnViewOrdersCustomer"
         android:layout_width="160dp"
         android:layout_height="160dp"
+        android:onClick="sendToViewOrder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnViewCartCustomer"
         app:layout_constraintHorizontal_bias="0.483"

@@ -34,6 +34,13 @@ public class CustomerHomePage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void sendToViewOrder(View view){
+        Intent intent = new Intent(CustomerHomePage.this, Customer_ViewOrder.class);
+        intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
+        ImageButton button = (ImageButton) findViewById(R.id.btnViewOrdersCustomer);
+        startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(CustomerHomePage.this, LoginActivity.class);

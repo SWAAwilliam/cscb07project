@@ -111,9 +111,13 @@ public class CustomerAccountActivity extends AppCompatActivity {
             //USER IS AN OWNER
 
             //Firebase does not allow empty ArrayLists, so create a placeholder to solve this
-            ArrayList<Product> placeHolderProducts = new ArrayList<>();
-            Product placeHolderProduct = new Product("No products added!", 0);
-            placeHolderProducts.add(placeHolderProduct);
+
+            ArrayList<Product> placeHolderProducts2 = new ArrayList<>();
+            Product placeHolderProduct2 = new Product("No products added!", 0);
+            placeHolderProducts2.add(placeHolderProduct2);
+            ArrayList<Order> placeHolderOrders2 = new ArrayList<>();
+            Order placeHolderOrder2 = new Order("No orders received!","No orders placed!",placeHolderProducts2,"0","0");
+            placeHolderOrders2.add(placeHolderOrder2);
 
             StoreOwner owner = new StoreOwner();
             owner.setUserUID( userUID );
@@ -121,15 +125,25 @@ public class CustomerAccountActivity extends AppCompatActivity {
             owner.setLastName( lastName );
             owner.setOwnerCheck( true );
             owner.setStoreName( storeName );
-            owner.setProducts(placeHolderProducts);
+            owner.setProducts( placeHolderProducts2 );
+            owner.setOrders( placeHolderOrders2 );
             ref.child("users").child(user.getUid()).setValue(owner);
         }
         else{
             //USER IS A CUSTOMER
+            ArrayList<Product> placeHolderProducts = new ArrayList<>();
+            Product placeHolderProduct = new Product("No products added!", 0);
+            placeHolderProducts.add(placeHolderProduct);
+            ArrayList<Order> placeHolderOrders = new ArrayList<>();
+            Order placeHolderOrder = new Order("No orders received!","No orders placed!",placeHolderProducts,"0","0");
+            placeHolderOrders.add(placeHolderOrder);
+
             Customer customer = new Customer();
             customer.setUserUID( userUID );
             customer.setFirstName( firstName );
             customer.setLastName( lastName );
+            customer.setOrders( placeHolderOrders );
+            customer.setOwnerCheck( false );
             ref.child("users").child(user.getUid()).setValue(customer);
         }
 

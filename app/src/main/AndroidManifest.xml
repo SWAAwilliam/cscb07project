@@ -16,6 +16,9 @@
             android:name=".Customer_ViewCart"
             android:exported="false" />
         <activity
+            android:name=".Customer_ViewOrder"
+            android:exported="false" />
+        <activity
             android:name=".Customer_ViewProducts"
             android:exported="false" />
         <activity
