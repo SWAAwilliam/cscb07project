@@ -182,17 +182,20 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     }
 
+    public void validateLogin(View view){
+        //presenter.validateAccount();
+    }
 
     @Override
     public String getEmail(){
-        //Return the email from EditText
-        return null;
+        EditText input_email = findViewById(R.id.username);
+        return input_email.getText().toString();
     }
 
     @Override
     public String getPassword(){
-        //Return the password from EditText
-        return null;
+        EditText input_password = findViewById(R.id.password);
+        return input_password.getText().toString();
     }
 
     @Override
