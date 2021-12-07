@@ -18,7 +18,6 @@ public class LoginModel implements LoginContract.Model {
     public LoginModel(){
     }
 
-
     @Override
     public void validateAccount(String email, String password) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -42,22 +41,14 @@ public class LoginModel implements LoginContract.Model {
                                 if ( isOwner ) {
                                     //User is an owner
                                     presenter.successfulLogin(true);
-
-
-//                                    sendUserToOwner();
-//                                    Toast.makeText(LoginActivity.this, "Logged in Successfully AS OWNER", Toast.LENGTH_SHORT).show();
-
                                 }
                                 else{
                                     //User is a customer
                                     presenter.successfulLogin(false);
-
-
-//                                    sendUserToLogin();
-//                                    Toast.makeText(LoginActivity.this, "Logged in Successfully AS USER", Toast.LENGTH_SHORT).show();
                                 }
                             }
                             else{
+                                //Database error
                                 presenter.checkError("Database error");
 
                             }
@@ -66,6 +57,7 @@ public class LoginModel implements LoginContract.Model {
 
                 }
                 else{
+                    //Wrong email and/or password
                     presenter.checkError("Login error");
                 }
             }

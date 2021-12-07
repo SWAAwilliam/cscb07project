@@ -34,7 +34,7 @@ public class LoginPresenter implements LoginContract.Presenter{
             view.displayError("Database error!");
         }
         else if (error.equals("Login error")){
-            view.displayError("Login Failed, Please Try Again!");
+            view.displayError("Login Failed, Please Check Your Email and Password!");
         }
 
     }

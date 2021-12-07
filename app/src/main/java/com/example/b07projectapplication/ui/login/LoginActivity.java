@@ -1,6 +1,5 @@
 package com.example.b07projectapplication.ui.login;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -24,31 +23,17 @@ import android.widget.Toast;
 
 import com.example.b07projectapplication.CustomerAccountActivity;
 import com.example.b07projectapplication.CustomerHomePage;
-import com.example.b07projectapplication.Person;
 import com.example.b07projectapplication.R;
 import com.example.b07projectapplication.StoreOwnerHomepage;
 import com.example.b07projectapplication.databinding.ActivityLoginBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
     private LoginViewModel_AUTOGEN loginViewModelAUTOGEN;
     private ActivityLoginBinding binding;
-
-    private EditText input_email;
-    private EditText input_password;
-    private Button btn_login;
-    private FirebaseAuth auth;
-    private FirebaseUser user;
-    private DatabaseReference ref;
-
     LoginContract.Presenter presenter;
 
 
@@ -60,25 +45,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
         LoginContract.Model model = new LoginModel();
         presenter = new LoginPresenter(this, model);
-
-
-        input_email = findViewById(R.id.username);
-        input_password = findViewById(R.id.password);
-        btn_login = findViewById(R.id.login);
-
-        auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
-
-        if (user != null) {
-            String userUID = user.getUid();
-        }
-
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login();
-            }
-        });
+        model.setPresenter(presenter);
 
 
 
@@ -91,7 +58,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
-        final Button loginButton = binding.login;
+        final Button loginButton = binding.btnLogin;
         final ProgressBar loadingProgressBar = binding.loading;
 
         loginViewModelAUTOGEN.getLoginFormState().observe(this, new Observer<LoginFormState_AUTOGEN>() {
@@ -130,67 +97,30 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         };
         usernameEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
+        /**----------------------------------------------END OF AUTO-GENERATED CODE-----------------------------------------------------------------------*/
+
+        //Start Login Process on Enter Press
+        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE ||
                         event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                    login();
+                    validateLogin();
                 }
                 return false;
             }
         });
-        /**----------------------------------------------END OF AUTO-GENERATED CODE-----------------------------------------------------------------------*/
+
 
     }
 
 
-
-
-    public void login(){
-        String email = input_email.getText().toString();
-        String password = input_password.getText().toString();
-
-        auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-
-                    FirebaseUser newUser = task.getResult().getUser();
-                    String userUID = newUser.getUid();
-
-                    ref = FirebaseDatabase.getInstance().getReference("users");
-                    ref.child(userUID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DataSnapshot> task) {
-                            if (task.isSuccessful()){
-                                Person person = task.getResult().getValue(Person.class);
-                                boolean isOwner = person.getOwnerCheck();
-
-                                if ( isOwner ) {
-                                    sendUserToOwner();
-                                    Toast.makeText(LoginActivity.this, "Logged in Successfully AS OWNER", Toast.LENGTH_SHORT).show();
-
-                                }
-                                else{
-                                    sendUserToCustomer();
-                                    Toast.makeText(LoginActivity.this, "Logged in Successfully AS USER", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        }
-                    });
-
-                }
-                else{
-                    Toast.makeText(LoginActivity.this, "Login Failed, Please Try Again", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
+    public void loginButtonClick(View view){
+        validateLogin();
     }
 
-    public void validateLogin(View view){
+    public void validateLogin(){
         presenter.checkInput();
     }
 
