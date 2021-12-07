@@ -1,7 +1,5 @@
 package com.example.b07projectapplication.ui.login;
 
-import android.app.Activity;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -26,10 +24,8 @@ import android.widget.Toast;
 
 import com.example.b07projectapplication.CustomerAccountActivity;
 import com.example.b07projectapplication.CustomerHomePage;
-import com.example.b07projectapplication.Customer_ViewMyStores;
 import com.example.b07projectapplication.Person;
 import com.example.b07projectapplication.R;
-import com.example.b07projectapplication.StoreOwner;
 import com.example.b07projectapplication.StoreOwnerHomepage;
 import com.example.b07projectapplication.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,15 +34,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
-    private LoginViewModel loginViewModel;
+    private LoginViewModel_AUTOGEN loginViewModelAUTOGEN;
     private ActivityLoginBinding binding;
 
     private EditText input_email;
@@ -66,8 +59,8 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
-                .get(LoginViewModel.class);
+        loginViewModelAUTOGEN = new ViewModelProvider(this, new LoginViewModelFactory_AUTOGEN())
+                .get(LoginViewModel_AUTOGEN.class);
 
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
@@ -76,18 +69,18 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
+        loginViewModelAUTOGEN.getLoginFormState().observe(this, new Observer<LoginFormState_AUTOGEN>() {
             @Override
-            public void onChanged(@Nullable LoginFormState loginFormState) {
-                if (loginFormState == null) {
+            public void onChanged(@Nullable LoginFormState_AUTOGEN loginFormStateAUTOGEN) {
+                if (loginFormStateAUTOGEN == null) {
                     return;
                 }
-                loginButton.setEnabled(loginFormState.isDataValid());
-                if (loginFormState.getUsernameError() != null) {
-                    usernameEditText.setError(getString(loginFormState.getUsernameError()));
+                loginButton.setEnabled(loginFormStateAUTOGEN.isDataValid());
+                if (loginFormStateAUTOGEN.getUsernameError() != null) {
+                    usernameEditText.setError(getString(loginFormStateAUTOGEN.getUsernameError()));
                 }
-                if (loginFormState.getPasswordError() != null) {
-                    passwordEditText.setError(getString(loginFormState.getPasswordError()));
+                if (loginFormStateAUTOGEN.getPasswordError() != null) {
+                    passwordEditText.setError(getString(loginFormStateAUTOGEN.getPasswordError()));
                 }
             }
         });
@@ -106,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
+                loginViewModelAUTOGEN.loginDataChanged(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
             }
         };
@@ -190,14 +183,27 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    //send the user to the logged in screen view
-    private void sendUserToLogin(){
+    @Override
+    public String getEmail(){
+        //Return the email from EditText
+        return null;
+    }
+
+    @Override
+    public String getPassword(){
+        //Return the password from EditText
+        return null;
+    }
+
+    @Override
+    public void sendUserToLogin(){
         Intent intent = new Intent(LoginActivity.this, CustomerHomePage.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
-    private void sendUserToOwner(){
+    @Override
+    public void sendUserToOwner(){
         Intent intent = new Intent(LoginActivity.this, StoreOwnerHomepage.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -205,15 +211,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void showLoginFailed(@StringRes Integer errorString) {
-        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
-    }
-
-    public void createCAccount(View view){
+    public void sendUserToCreateAccount(View view){
         Intent intent = new Intent (this, CustomerAccountActivity.class);
-        Button button = (Button) findViewById(R.id.ca_button);
+        intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
+    }
+
+    private void showLoginFailed(@StringRes Integer errorString) {
+        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 
     @Override

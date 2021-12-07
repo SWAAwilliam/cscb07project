@@ -1,7 +1,7 @@
 package com.example.b07projectapplication.data.model;
 
 /**
- * Data class that captures user information for logged in users retrieved from LoginRepository
+ * Data class that captures user information for logged in users retrieved from LoginRepository_AUTOGEN
  */
 public class LoggedInUser {
 

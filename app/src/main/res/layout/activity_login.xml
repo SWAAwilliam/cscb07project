@@ -91,7 +91,7 @@
         android:layout_gravity="start"
         android:backgroundTint="@android:color/holo_blue_dark"
         android:enabled="true"
-        android:onClick="createCAccount"
+        android:onClick="sendUserToCreateAccount"
         android:text="@string/create_account"
         android:textColor="#FFFFFF"
         android:textSize="18sp"

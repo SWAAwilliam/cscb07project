@@ -141,6 +141,12 @@ public class CustomerAccountActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent back = new Intent(CustomerAccountActivity.this, LoginActivity.class);
+        startActivity(back);
+        finish();
+    }
 
 
 }
