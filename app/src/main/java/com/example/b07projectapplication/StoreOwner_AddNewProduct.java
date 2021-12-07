@@ -71,7 +71,7 @@ public class StoreOwner_AddNewProduct extends AppCompatActivity {
                     //ADD NEW PRODUCT AND UPDATE THE DATABASE
                     owner.addProduct(newProduct);
                     //Remove the placeholder product created on account creation
-                    Product placeHolderProduct = new Product("Add a new product!", 0);
+                    Product placeHolderProduct = new Product("No products added!", 0);
                     if (owner.products.contains(placeHolderProduct)) {
                         owner.removeProduct(placeHolderProduct);
                     }

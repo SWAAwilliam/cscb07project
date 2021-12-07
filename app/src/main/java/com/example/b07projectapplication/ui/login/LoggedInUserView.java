@@ -8,13 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.b07projectapplication.R;
 
-/**
- * Class exposing authenticated user details to the UI.
- */
+
 class LoggedInUserView {
     private String displayName;
-
-    //... other data fields that may be accessible to the UI
 
     LoggedInUserView(String displayName) {
         this.displayName = displayName;
@@ -30,10 +26,8 @@ class LoggedInUserView {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_create_account_page);
-            // Get the Intent that started this activity and extract the string
             Intent intent = getIntent();
 
         }
-
     }
 }

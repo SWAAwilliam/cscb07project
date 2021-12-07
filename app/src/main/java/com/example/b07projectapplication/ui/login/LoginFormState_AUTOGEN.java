@@ -2,23 +2,20 @@ package com.example.b07projectapplication.ui.login;
 
 import androidx.annotation.Nullable;
 
-/**
- * Data validation state of the login form.
- */
-class LoginFormState {
+class LoginFormState_AUTOGEN {
     @Nullable
     private Integer usernameError;
     @Nullable
     private Integer passwordError;
     private boolean isDataValid;
 
-    LoginFormState(@Nullable Integer usernameError, @Nullable Integer passwordError) {
+    LoginFormState_AUTOGEN(@Nullable Integer usernameError, @Nullable Integer passwordError) {
         this.usernameError = usernameError;
         this.passwordError = passwordError;
         this.isDataValid = false;
     }
 
-    LoginFormState(boolean isDataValid) {
+    LoginFormState_AUTOGEN(boolean isDataValid) {
         this.usernameError = null;
         this.passwordError = null;
         this.isDataValid = isDataValid;
