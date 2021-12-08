@@ -105,6 +105,8 @@ public class Customer_ViewCart extends AppCompatActivity {
 
         String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
+
+        //GET THE STORE NAME AND CUSTOMER NAME
         ref.child(id).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -113,24 +115,9 @@ public class Customer_ViewCart extends AppCompatActivity {
                     StoreOwner owner = task.getResult().getValue(StoreOwner.class);
                     storeName = owner.getStoreName();
 
-
-//                    ArrayList<Product> placeHolderProducts2 = new ArrayList<>();
-//                    Product placeHolderProduct2 = new Product("No products added!", 0);
-//                    placeHolderProducts2.add(placeHolderProduct2);
-//                    Order placeHolderOrder2 = new Order("No orders received!","No orders placed!",placeHolderProducts2,"0","0");
-//                    if (owner.orders.contains(placeHolderOrder2)) {
-//                        owner.removeOrder(placeHolderOrder2);
-//                    }
-//                    else if(owner.orders.get(0).customerUID.equals(0)){
-//                        owner.removeOrder(placeHolderOrder2);
-//                    }
-//                    owner.addOrder(newOrder);
-//                    ref.child(id).setValue(owner);
-
                 }
             }
         });
-
         ref.child(userUID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -138,35 +125,11 @@ public class Customer_ViewCart extends AppCompatActivity {
                 if ( task.isSuccessful() ){
                     Customer customer = task.getResult().getValue(Customer.class);
                     customerName = customer.getFirstName()+ " " + customer.getLastName();
-
-//                    ArrayList<Product> placeHolderProducts = new ArrayList<>();
-//                    Product placeHolderProduct = new Product("No products added!", 0);
-//                    placeHolderProducts.add(placeHolderProduct);
-//                    ArrayList<Order> placeHolderOrders = new ArrayList<>();
-//                    Order placeHolderOrder = new Order("No orders received!","No orders placed!",placeHolderProducts,"0","0");
-//                    Log.d("ViewCart","Removing placeholder");
-//
-//                    if (customer.orders.contains(placeHolderOrder)) {
-//                        customer.removeOrder(placeHolderOrder);
-//                    }
-//                    else if(customer.orders.get(0).customerUID.equals(0)){
-//                        customer.removeOrder(placeHolderOrder);
-//                    }
-//
-//                    Order newOrder = new Order();
-//                    newOrder.setCustomerName(customerName);
-//                    newOrder.setStoreName(storeName);
-//                    newOrder.setCustomerUID(userUID);
-//                    newOrder.setOwnerUID(id);
-//                    newOrder.setProducts(fullCart);
-//                    customer.addOrder(newOrder);
-//
-//                    ref.child(userUID).setValue(customer);
-
                 }
             }
 
         });
+
 
         //CREATE A ORDER FROM CART AND WRITE TO DATABASE
         Order newOrder = new Order();
@@ -184,7 +147,6 @@ public class Customer_ViewCart extends AppCompatActivity {
         //NEED TO CHECK FOR DUPLICATE ORDERS
         DatabaseReference refOrders = FirebaseDatabase.getInstance().getReference();
         refOrders.child("orders").child( String.valueOf( newOrder.hashCode() ) ).setValue(newOrder);
-
 
 
         Intent intent = new Intent(Customer_ViewCart.this, Customer_ViewOrder.class);
