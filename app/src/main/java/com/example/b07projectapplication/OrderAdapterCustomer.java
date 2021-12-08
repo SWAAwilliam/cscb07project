@@ -47,10 +47,10 @@ public class OrderAdapterCustomer extends RecyclerView.Adapter<OrderAdapterCusto
     @Override
     public void onBindViewHolder(@NonNull OrderAdapterCustomer.MyViewHolder holder, int position) {
         Order o = list.get(position);
-            holder.customerName.setText(o.storeName);
+            holder.customerName.setText("Order from: " + o.storeName);
             setListView(holder.products, o.getProducts());
             if (!o.getIsComplete()) { holder.b.setVisibility(View.INVISIBLE); }
-            else{holder.b.setText("Recieved");}
+            else{holder.b.setText("Received");}
     }
 
     public void setListView(ListView lv, ArrayList<Product> p) {

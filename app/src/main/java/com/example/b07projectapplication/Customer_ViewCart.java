@@ -28,7 +28,6 @@ public class Customer_ViewCart extends AppCompatActivity {
     CartAdapter adapter;
     ArrayList<Product> fullCart;
     TextView total;
-    Button save;
     Button addToOrder;
     double cartTotal;
     String id;      //UID of the StoreOwner
@@ -55,7 +54,6 @@ public class Customer_ViewCart extends AppCompatActivity {
         adapter = new CartAdapter(this,fullCart);
         recyclerView.setAdapter(adapter);
         total = findViewById(R.id.cart_total);
-        save = findViewById(R.id.save_cart);
         addToOrder = findViewById(R.id.add_to_order);
 
         addToOrder.setOnClickListener(new View.OnClickListener() {
@@ -164,9 +162,6 @@ public class Customer_ViewCart extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void saveCart(){
-
-    }
 
     @Override
     public void onBackPressed() {
