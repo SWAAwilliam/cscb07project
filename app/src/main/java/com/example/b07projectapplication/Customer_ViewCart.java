@@ -77,7 +77,9 @@ public class Customer_ViewCart extends AppCompatActivity {
                             p.setQuantity(pQuantity.get(j));
                             if(p.getQuantity() > 0){
                             fullCart.add(p);
-                            cartTotal += p.getQuantity() * p.getPrice();}
+                            cartTotal += p.getQuantity() * p.getPrice();
+                                int temp = (int)(cartTotal*100.0);
+                                cartTotal = ((double)temp)/100.0;}
                         }
                     }
                     adapter.notifyDataSetChanged();
@@ -92,6 +94,8 @@ public class Customer_ViewCart extends AppCompatActivity {
             public void onClick(int position) {
                 Product r = fullCart.get(position);
                 cartTotal -= r.getQuantity() * r.getPrice();
+                int temp = (int)(cartTotal*100.0);
+                cartTotal = ((double)temp)/100.0;
                 total.setText("Your total is: $"+String.valueOf(cartTotal));
                 fullCart.remove(r);
                 adapter.notifyDataSetChanged();
@@ -107,7 +111,7 @@ public class Customer_ViewCart extends AppCompatActivity {
 
         //CREATE A ORDER FROM CART AND WRITE TO DATABASE
         Order newOrder = new Order();
-        newOrder.setStatus(false);
+        newOrder.setIsComplete(false);
         newOrder.setCustomerUID(userUID);
         newOrder.setOwnerUID(id);
 

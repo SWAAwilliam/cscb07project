@@ -49,7 +49,7 @@ public class OrderAdapterCustomer extends RecyclerView.Adapter<OrderAdapterCusto
         Order o = list.get(position);
             holder.customerName.setText(o.storeName);
             setListView(holder.products, o.getProducts());
-            if (!o.isComplete) { holder.b.setVisibility(View.INVISIBLE); }
+            if (!o.getIsComplete()) { holder.b.setVisibility(View.INVISIBLE); }
             else{holder.b.setText("Recieved");}
     }
 

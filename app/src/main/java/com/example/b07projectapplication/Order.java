@@ -37,8 +37,8 @@ public class Order {
     public String getStoreName() { return storeName; }
     public void setStoreName(String storeName) { this.storeName = storeName; }
 
-    public boolean isComplete() { return isComplete; }
-    public void setStatus(boolean complete) { isComplete = complete; }
+    public boolean getIsComplete() { return isComplete; }
+    public void setIsComplete(boolean isComplete) { this.isComplete = isComplete; }
 
     public ArrayList<Product> getProducts() { return products; }
     public void setProducts(ArrayList<Product> products) {

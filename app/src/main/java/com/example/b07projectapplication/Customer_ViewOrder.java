@@ -34,7 +34,8 @@ public class Customer_ViewOrder extends AppCompatActivity {
         getSupportActionBar().hide();
         String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         recyclerView = findViewById(R.id.orders_view);
-        ref = FirebaseDatabase.getInstance().getReference("users").child(userUID).child("orders");
+       // ref = FirebaseDatabase.getInstance().getReference("users").child(userUID).child("orders");
+        ref = FirebaseDatabase.getInstance().getReference("orders");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -85,8 +86,25 @@ public class Customer_ViewOrder extends AppCompatActivity {
     }
 
     private void completeOrder(Order o){
-        list.remove(o);
-        adapter.notifyDataSetChanged();
+       /* if(list.size() == 1){
+            ArrayList<Product> placeHolderProducts = new ArrayList<>();
+            Product placeHolderProduct = new Product("No products added!", 0);
+            placeHolderProducts.add(placeHolderProduct);
+            Order placeHolderOrder = new Order("No orders received!","No orders placed!",placeHolderProducts,"0",o.getCustomerUID());
+            list.remove(o);
+            //ref.child(String.valueOf(o.hashCode())).setValue(o);
+            list.add(placeHolderOrder);
+            ref.child(String.valueOf(o.hashCode())).removeValue();
+            ref.child(String.valueOf(placeHolderOrder.hashCode())).setValue(placeHolderOrder);
+
+            //ref.
+        }
+        else {
+            list.remove(o);
+            ref.child(String.valueOf(o.hashCode())).removeValue();
+            adapter.notifyDataSetChanged();
+        }
+        adapter.notifyDataSetChanged();*/
     }
 
     @Override
