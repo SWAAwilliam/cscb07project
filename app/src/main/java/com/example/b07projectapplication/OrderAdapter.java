@@ -48,7 +48,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull OrderAdapter.MyViewHolder holder, int position) {
         Order o = list.get(position);
-        holder.customerName.setText(o.customerName);
+        holder.customerName.setText("Order by: "+o.getCustomerName());
         setListView(holder.products, o.getProducts());
         holder.b.setText("Complete");
 

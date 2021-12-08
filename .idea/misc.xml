@@ -3,7 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../../layout/custom_preview.xml" value="0.13802083333333334" />
         <entry key="..\:/Users/William/Documents/B07ProjectApplication/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/William/Documents/B07ProjectBranchTest/app/src/main/res/layout/activity_customer_account_acitivity.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/William/Documents/B07ProjectBranchTest/app/src/main/res/layout/activity_login.xml" value="0.34057971014492755" />
@@ -11,21 +10,16 @@
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.390234375" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/activity_create_account_page.xml" value="0.4041666666666667" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/activity_customer_homepage.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/activity_customer_view_my_stores.xml" value="0.4041666666666667" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/activity_login.xml" value="0.5" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/activity_store_owner_add_new_product.xml" value="0.4041666666666667" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/activity_store_owner_homepage.xml" value="0.33" />
-        <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/activity_store_owner_view_orders.xml" value="0.4041666666666667" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/activity_store_owner_view_products.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/activity_test.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/activity_view_stores.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/customer_account_activity.xml" value="0.33" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/new_account_activity.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/order.xml" value="0.4041666666666667" />
         <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/owner_listproducts_resources.xml" value="0.4041666666666667" />
-        <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/product.xml" value="0.4041666666666667" />
-        <entry key="..\:/Users/William/Documents/cscb07project/app/src/main/res/layout/store.xml" value="0.4041666666666667" />
         <entry key="..\:/Users/shahz/Desktop/cscb07/cscb07project/app/src/main/res/drawable-anydpi/ic_orders.xml" value="0.17604166666666668" />
         <entry key="..\:/Users/shahz/Desktop/cscb07/cscb07project/app/src/main/res/drawable-anydpi/ic_profile.xml" value="0.17604166666666668" />
         <entry key="..\:/Users/shahz/Desktop/cscb07/cscb07project/app/src/main/res/drawable-anydpi/ic_shopping.xml" value="0.17604166666666668" />
@@ -52,13 +46,16 @@
         <entry key="..\:/Users/shahz/Desktop/cscb07/cscb07project/app/src/main/res/layout/store.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/shrut/OneDrive/Desktop/UTSC/CSCB07H3/GitHub/cscb07project/app/src/main/res/layout/activity_create_account_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/shrut/OneDrive/Desktop/UTSC/CSCB07H3/GitHub/cscb07project/app/src/main/res/layout/activity_customer_homepage.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/shrut/OneDrive/Desktop/UTSC/CSCB07H3/GitHub/cscb07project/app/src/main/res/layout/activity_customer_view_cart.xml" value="0.2346014492753623" />
+        <entry key="..\:/Users/shrut/OneDrive/Desktop/UTSC/CSCB07H3/GitHub/cscb07project/app/src/main/res/layout/activity_customer_view_order.xml" value="0.23097826086956522" />
+        <entry key="..\:/Users/shrut/OneDrive/Desktop/UTSC/CSCB07H3/GitHub/cscb07project/app/src/main/res/layout/activity_customer_view_profile.xml" value="0.23822463768115942" />
         <entry key="..\:/Users/shrut/OneDrive/Desktop/UTSC/CSCB07H3/GitHub/cscb07project/app/src/main/res/layout/activity_customer_view_stores.xml" value="0.4" />
         <entry key="..\:/Users/shrut/OneDrive/Desktop/UTSC/CSCB07H3/GitHub/cscb07project/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/shrut/OneDrive/Desktop/UTSC/CSCB07H3/GitHub/cscb07project/app/src/main/res/layout/activity_store_owner_homepage.xml" value="0.25416666666666665" />
-        <entry key="app/src/main/res/layout/activity_customer_view_cart.xml" value="0.297270955165692" />
-        <entry key="app/src/main/res/layout/activity_customer_view_products.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/cart.xml" value="0.75" />
-        <entry key="app/src/main/res/layout/product.xml" value="0.24322916666666666" />
+        <entry key="..\:/Users/shrut/OneDrive/Desktop/UTSC/CSCB07H3/GitHub/cscb07project/app/src/main/res/layout/activity_store_owner_my_profile.xml" value="0.2346014492753623" />
+        <entry key="..\:/Users/shrut/OneDrive/Desktop/UTSC/CSCB07H3/GitHub/cscb07project/app/src/main/res/layout/activity_store_owner_view_orders.xml" value="0.176" />
+        <entry key="..\:/Users/shrut/OneDrive/Desktop/UTSC/CSCB07H3/GitHub/cscb07project/app/src/main/res/layout/order.xml" value="0.264" />
+        <entry key="..\:/Users/shrut/OneDrive/Desktop/UTSC/CSCB07H3/GitHub/cscb07project/app/src/main/res/layout/product.xml" value="0.23097826086956522" />
       </map>
     </option>
   </component>
