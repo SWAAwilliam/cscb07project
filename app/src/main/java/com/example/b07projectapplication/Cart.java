@@ -11,33 +11,24 @@ public class Cart {
     ArrayList<Product> cartProducts;
 
 
-    public String getOwnerUID() { return ownerUID; }
+    public void Cart(){
+    }
 
+    public String getOwnerUID() { return ownerUID; }
     public void setOwnerUID(String ownerUID) { this.ownerUID = ownerUID;}
 
     public String getStoreName() { return storeName; }
-
     public void setStoreName(String storeName) { this.storeName = storeName; }
 
     public ArrayList<Product> getCartProducts() {
         return cartProducts;
     }
-
     public void setCartProducts(ArrayList<Product> cartProducts) {
         this.cartProducts = new ArrayList<Product>();
         for (Product product: cartProducts){
             this.cartProducts.add(product);
         }
     }
-    public void Cart(){
-
-    }
-    //start a new cart
-    //public Cart(StoreOwner storeOwner){
-      //  this.storeOwner = storeOwner;
-        //storeName = storeOwner.storeName;
-        //cartProducts = new ArrayList<Product>();
-    //}
 
     public void addToCart(Product product){
         if (cartProducts.contains(product)){
@@ -88,13 +79,13 @@ public class Cart {
         }
     }
 
-
     //removes every product from the cart
     public void resetCart(){
         for (Product product: cartProducts){
             this.cartProducts.remove(product);
         }
     }
+
 
     @Override
     public int hashCode() {

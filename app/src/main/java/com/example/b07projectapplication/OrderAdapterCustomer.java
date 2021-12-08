@@ -27,14 +27,11 @@ public class OrderAdapterCustomer extends RecyclerView.Adapter<OrderAdapterCusto
 
     public void setButtonClickListener(OrderAdapterCustomer.ButtonClickListener listener){
         mylistener = listener;
-
     }
-
 
     public OrderAdapterCustomer(Context context, ArrayList<Order> list) {
         this.context = context;
         this.list = list;
-
     }
 
     @NonNull
@@ -71,7 +68,6 @@ public class OrderAdapterCustomer extends RecyclerView.Adapter<OrderAdapterCusto
     }
 
 
-
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView customerName;
         ListView products;
@@ -89,10 +85,8 @@ public class OrderAdapterCustomer extends RecyclerView.Adapter<OrderAdapterCusto
                         int pos = getAdapterPosition();
                         listener.onClick(pos);
                     }
-
                 }
             });
-
         }
     }
 

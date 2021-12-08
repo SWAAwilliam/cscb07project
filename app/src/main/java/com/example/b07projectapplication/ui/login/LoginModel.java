@@ -42,12 +42,14 @@ public class LoginModel implements LoginContract.Model {
                                     if (isOwner) {
                                         //User is an owner
                                         presenter.successfulLogin(true);
-                                    } else {
+                                    }
+                                    else {
                                         //User is a customer
                                         presenter.successfulLogin(false);
                                     }
                                 }
                                 else{
+                                    //Account does not exist
                                     presenter.checkError("DNE");
                                 }
                             }

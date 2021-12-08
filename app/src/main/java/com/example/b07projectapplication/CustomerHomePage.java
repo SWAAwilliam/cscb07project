@@ -19,7 +19,6 @@ public class CustomerHomePage extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
-
     public void sendToViewStores(View view){
         Intent intent = new Intent(CustomerHomePage.this, Customer_ViewMyStores.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);

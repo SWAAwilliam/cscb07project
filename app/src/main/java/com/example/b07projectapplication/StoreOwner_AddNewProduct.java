@@ -27,6 +27,7 @@ public class StoreOwner_AddNewProduct extends AppCompatActivity {
     private EditText productName;
     private EditText productPrice;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,6 @@ public class StoreOwner_AddNewProduct extends AppCompatActivity {
         productPrice = findViewById(R.id.editProductPrice);
 
     }
-
 
     public void sentToViewProducts(View view){
         Intent intent = new Intent(StoreOwner_AddNewProduct.this, StoreOwner_ViewProducts.class);

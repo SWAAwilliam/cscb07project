@@ -71,8 +71,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         return list.size();
     }
 
-
-
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView customerName;
         ListView products;
@@ -90,10 +88,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                         int pos = getAdapterPosition();
                         listener.onClick(pos);
                     }
-
                 }
             });
-
         }
     }
 

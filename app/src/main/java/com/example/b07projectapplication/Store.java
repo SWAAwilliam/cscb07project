@@ -15,10 +15,31 @@ public class Store {
         products = new ArrayList<Product>();
     }
 
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+    public String getStoreName() {
+        return storeName;
+    }
+    public StoreOwner getStoreOwner() {
+        return storeOwner;
+    }
+
     public void addProduct(Product product) {
         if (!products.contains(product)) {
             products.add(product);
         }
+    }
+
+
+    @Override
+    public String toString() {
+        return "Store Name: " + storeName + "\nStore Owner: " + storeOwner;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(storeName, storeOwner, products);
     }
 
     @Override
@@ -29,28 +50,6 @@ public class Store {
         return Objects.equals(storeName, store.storeName) &&
                 Objects.equals(storeOwner, store.storeOwner) &&
                 Objects.equals(products, store.products);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(storeName, storeOwner, products);
-    }
-
-    @Override
-    public String toString() {
-        return "Store Name: " + storeName + "\nStore Owner: " + storeOwner;
-    }
-
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
-
-    public String getStoreName() {
-        return storeName;
-    }
-
-    public StoreOwner getStoreOwner() {
-        return storeOwner;
     }
 
 }

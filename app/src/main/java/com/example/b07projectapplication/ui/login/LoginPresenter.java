@@ -39,6 +39,6 @@ public class LoginPresenter implements LoginContract.Presenter{
         else if (error.equals("DNE")){
             view.displayError("User Does Not Exist!");
         }
-
     }
+
 }

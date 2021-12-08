@@ -36,7 +36,6 @@ public class StoreOwner_ViewOrders extends AppCompatActivity {
 
         ref = FirebaseDatabase.getInstance().getReference().child("orders");
         recyclerView = findViewById(R.id.orders_view);
-        String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -100,4 +99,5 @@ public class StoreOwner_ViewOrders extends AppCompatActivity {
         startActivity(back);
         finish();
     }
+
 }

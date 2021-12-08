@@ -52,14 +52,12 @@ public class Customer_ViewProfile extends AppCompatActivity {
                     Person user = task.getResult().getValue(Person.class);
                     first_name.setText(user.getFirstName());
                     last_name.setText(user.getLastName());
-
                 }
             }
         });
 
-
-
     }
+
     public void signOut(View view){
         FirebaseAuth.getInstance().signOut();
         Toast.makeText(this, "Successfully signed out!", Toast.LENGTH_SHORT).show();
@@ -74,4 +72,5 @@ public class Customer_ViewProfile extends AppCompatActivity {
         startActivity(back);
         finish();
     }
+
 }

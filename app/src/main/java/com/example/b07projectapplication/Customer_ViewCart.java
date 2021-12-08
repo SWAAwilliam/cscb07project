@@ -30,7 +30,7 @@ public class Customer_ViewCart extends AppCompatActivity {
     TextView total;
     Button addToOrder;
     double cartTotal;
-    String id;      //UID of the StoreOwner
+    String id;      //userUID of the StoreOwner
     String storeName;
     String customerName;
 
@@ -41,11 +41,12 @@ public class Customer_ViewCart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_view_cart);
         getSupportActionBar().hide();
+
         Bundle bundle = getIntent().getExtras();
         final ArrayList<Integer> pIndex = bundle.getIntegerArrayList("BUNDLE");
         final ArrayList<Integer> pQuantity = bundle.getIntegerArrayList("BUNDLE2");
+
         id = bundle.getString("userid");
-        Log.d("id passed", "onCreate: "+String.valueOf(id));
         recyclerView = findViewById(R.id.cart_view);
         ref = FirebaseDatabase.getInstance().getReference("users").child(id).child("products");
         recyclerView.setHasFixedSize(true);
@@ -150,13 +151,14 @@ public class Customer_ViewCart extends AppCompatActivity {
 
         });
 
+        //WRITE ORDER TO FIREBASE
         DatabaseReference refOrders = FirebaseDatabase.getInstance().getReference();
         refOrders.child( tempHash ).get().addOnSuccessListener(dataSnapshot -> {
             refOrders.child( String.valueOf( newOrder.hashCode() ) ).setValue(dataSnapshot.getValue());
             refOrders.child( tempHash ).removeValue();
         });
 
-
+        //SEND USER TO VIEW ORDERS SCREEN
         Intent intent = new Intent(Customer_ViewCart.this, Customer_ViewOrder.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -171,4 +173,5 @@ public class Customer_ViewCart extends AppCompatActivity {
         startActivity(back);
         finish();
     }
+
 }

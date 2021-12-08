@@ -70,7 +70,6 @@ public class CustomerAccountActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-
         btn_create = findViewById(R.id.c_account);
 
         btn_create.setOnClickListener(new View.OnClickListener() {
@@ -158,6 +157,5 @@ public class CustomerAccountActivity extends AppCompatActivity {
         startActivity(back);
         finish();
     }
-
 
 }

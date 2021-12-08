@@ -16,6 +16,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     ArrayList<StoreOwner> list;
     RecyclerViewClickListener mylistener;
 
+
     //interface for when a store is clicked by the user
     public interface RecyclerViewClickListener{
         void onClick(int position);
@@ -23,14 +24,12 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
     public void setRecyclerViewClickListener(RecyclerViewClickListener listener){
         mylistener = listener;
-
     }
 
 
     public StoreAdapter(Context context, ArrayList<StoreOwner> list) {
         this.context = context;
         this.list = list;
-
     }
 
     @NonNull

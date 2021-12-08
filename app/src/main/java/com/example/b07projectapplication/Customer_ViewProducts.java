@@ -43,12 +43,13 @@ public class Customer_ViewProducts extends AppCompatActivity {
         setContentView(R.layout.activity_customer_view_products);
         getSupportActionBar().hide();
         Bundle bundle = getIntent().getExtras();
-        //get the userId of the clicked store
+
+        //GET THE USERID OF THE CLICKED STORE
         String id = bundle.getString("userid");
-        //System.out.println("asede: " + id);
         productIndex = new ArrayList<>();
         productQuantity = new ArrayList<>();
-        //open the Cart screen
+
+        //OPEN THE CART SCREEN
         viewCart = findViewById(R.id.view_cart);
         viewCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,30 +74,22 @@ public class Customer_ViewProducts extends AppCompatActivity {
                 Product p = list.get(position);
                 Log.d("DEBUG", "onClick: "+String.valueOf(p.getQuantity())+ " " +p.getName());
                 if(productIndex.contains(position)){
-                    //Log.d("contains","Old quantity is "+String.valueOf(productQuantity.get(productIndex.indexOf(position))));
                     if(p.getQuantity() == 0){
-                      //  Log.d("0quantity---", "onClick: "+String.valueOf(p.getQuantity())+ " " +p.getName());
                         productQuantity.set(productIndex.indexOf(position),1);
                     }
                     else{
                         productQuantity.set(productIndex.indexOf(position),p.getQuantity());
-                      //  Log.d("1+Quantity---", "onClick: "+String.valueOf(p.getQuantity())+ " " +p.getName());
                     }
-                    //Log.d("contains", "Set new quantity to "+String.valueOf(productQuantity.get(productIndex.indexOf(position))));
                 }
                 else{
                     productIndex.add(position);
                     if(p.getQuantity() == 0){
-                       // Log.d("0quantity", "onClick: "+String.valueOf(p.getQuantity())+ " " +p.getName());
                         productQuantity.add(1);
                     }
                     else{
-                       // Log.d("1+quantity", "onClick: "+String.valueOf(p.getQuantity())+ " " +p.getName());
                         productQuantity.add(p.getQuantity());
                     };
                 }
-                   // Log.d("new","AddedNewPosition "+position + "AddedNewQuantity" + p.getQuantity());}
-                //Toast.makeText(Customer_ViewProducts.this, "Product added", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -105,8 +98,6 @@ public class Customer_ViewProducts extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot data: snapshot.getChildren()){
                     Product p = data.getValue(Product.class);
-                    //System.out.println(p.getName());
-                    //System.out.println(p.getPriceString());
                     list.add(p);
                 }
                 adapter.notifyDataSetChanged();
@@ -116,12 +107,10 @@ public class Customer_ViewProducts extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     private void sendToCart(){
-        //pass the arrayList to cart
+        //PASS THE ARRAYLIST TO CART
         Intent intent = new Intent(Customer_ViewProducts.this, Customer_ViewCart.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("BUNDLE",productIndex);
@@ -132,10 +121,12 @@ public class Customer_ViewProducts extends AppCompatActivity {
         intent.putExtra("userid",id);
         startActivity(intent);
     }
+
     @Override
     public void onBackPressed() {
         Intent back = new Intent(Customer_ViewProducts.this, Customer_ViewMyStores.class);
         startActivity(back);
         finish();
     }
+
 }

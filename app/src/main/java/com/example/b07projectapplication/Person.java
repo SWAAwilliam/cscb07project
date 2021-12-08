@@ -22,6 +22,7 @@ public class Person {
     public void setLastName(String lastName) { this.lastName = lastName; }
     public void setUserUID(String userUID) { this.userUID = userUID; }
     public void setOwnerCheck(boolean isOwner) { this.isOwner = isOwner; }
+
     public String getFirstName() { return this.firstName; }
     public String getLastName() { return this.lastName; }
     public String getUserUID() { return this.userUID; }

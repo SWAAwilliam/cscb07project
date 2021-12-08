@@ -71,7 +71,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
         holder.b.setText("Add to Cart");
 
-
     }
 
     @Override
@@ -98,10 +97,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                         int pos = getAdapterPosition();
                         listener.onClick(pos);
                     }
-
                 }
             });
-
         }
     }
 

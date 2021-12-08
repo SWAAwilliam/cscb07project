@@ -28,7 +28,6 @@ public class StoreOwner_MyProfile extends AppCompatActivity {
     private TextView firstName;
     private TextView lastName;
     private TextView storeName;
-    private Button logOutButton;
 
 
     @Override
@@ -73,4 +72,5 @@ public class StoreOwner_MyProfile extends AppCompatActivity {
         startActivity(back);
         finish();
     }
+
 }

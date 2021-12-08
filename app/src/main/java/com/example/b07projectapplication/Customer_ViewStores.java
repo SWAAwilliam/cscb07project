@@ -27,30 +27,18 @@ public class Customer_ViewStores extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_customer_view_stores);
         getSupportActionBar().hide();
         addedStores = new ArrayList<Store>();
         getStores();
     }
 
-    /*private void alertDialog(Store store) {
-        AlertDialog.Builder info = new AlertDialog.Builder(this);
-        info.setTitle("Store Details");
-        info.setMessage(store.toString());
-        info.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.dismiss();
-            }
-        });
-        AlertDialog alertDialog = info.create();
-        alertDialog.show();
-    }*/
-
     public void viewStore(ArrayList<Store> stores) {
+
         if (stores == null || stores.size() == 0) {
             Log.i("check", "No stores found");
             return;
         }
+
         int x = (int) (Math.ceil(stores.size() / 3.0));
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
@@ -60,6 +48,7 @@ public class Customer_ViewStores extends AppCompatActivity {
         title.setAllCaps(true);
         title.setTextColor(Color.BLACK);
         layout.addView(title);
+
         for (int i = 0; i < x; i++) {
             LinearLayout l = new LinearLayout(this);
             l.setLayoutParams(new LinearLayout.LayoutParams
@@ -69,6 +58,7 @@ public class Customer_ViewStores extends AppCompatActivity {
             b1.setLayoutParams(new LinearLayout.LayoutParams(5, 5));
             b1.setVisibility(View.INVISIBLE);
             l.addView(b1);
+
             for (int j = 0; j < 3 && (j + (i * 3)) < stores.size(); j++) {
                 Button store = new Button(this);
                 store.setLayoutParams(new LinearLayout.LayoutParams(345,
@@ -82,25 +72,20 @@ public class Customer_ViewStores extends AppCompatActivity {
                 b2.setVisibility(View.INVISIBLE);
                 l.addView(b2);
             }
+
             layout.addView(l);
             LinearLayout l2 = new LinearLayout(this);
             l2.setLayoutParams(new LinearLayout.LayoutParams(5, 5));
             layout.addView(l2);
         }
 
-//        setContentView(layout);
         addContentView(layout, new LinearLayout.LayoutParams
                 (LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
+
     }
 
     public void getStores() {
-        //ArrayList<Store> stores = new ArrayList<Store>();
-        /*// Testing viewStore...
-        StoreOwner s = new StoreOwner("test", "s", "p", "Random Store", true);
-        Store store = new Store(s);
-        stores.add(store);
-        //*/
 
         //Reading from a realtime database using a persistent listener
         DatabaseReference ref =
@@ -111,17 +96,13 @@ public class Customer_ViewStores extends AppCompatActivity {
                 Log.i("check", "data changed");
                 ArrayList<Store> stores = new ArrayList<Store>();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-//                    Log.i("check", child.toString());
                     StoreOwner p = child.getValue(StoreOwner.class);
-//                    Log.i("check", p.getUserUID());
                     if (p.isOwner) {
-//                        Log.i("check", "owner found");
                         Store a = new Store(p);
                         if(!addedStores.contains(a)) {
                             stores.add(a);
                             addedStores.add(a);
                         }
-//                        Log.i("check", stores.size()+"");
                     }
                 }
                 Log.i("check", "Total Stores found = " + stores.size());
@@ -137,4 +118,5 @@ public class Customer_ViewStores extends AppCompatActivity {
         ref.addValueEventListener(listener);
         return;
     }
+
 }

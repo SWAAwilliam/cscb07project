@@ -67,13 +67,11 @@ public class StoreOwner_ViewProducts extends AppCompatActivity {
         updateListView();
     }
 
-
     public void sentToNewProduct(View view){
         Intent intent = new Intent(StoreOwner_ViewProducts.this, StoreOwner_AddNewProduct.class);
         intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-
 
     public void updateListView(){
         //UPDATE THE LISTVIEW
@@ -83,11 +81,9 @@ public class StoreOwner_ViewProducts extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if ( task.isSuccessful() ) {
-
                     owner = task.getResult().getValue(StoreOwner.class);
                     TextView tv = findViewById(R.id.textViewProducts);
                     tv.setText("Viewing all products of " + owner.getStoreName());
-
 
                     ArrayList<Product> productSet = owner.getProducts();
                     HashMap<String, String> productMap = new HashMap<>();
@@ -102,7 +98,7 @@ public class StoreOwner_ViewProducts extends AppCompatActivity {
                             productMap.put( product.getName(), product.getPriceString() );
                         }
 
-                        //CODE COURTESY OF https://www.youtube.com/watch?v=VYDLTBjdliY
+                        /**-------------------------------CODE COURTESY OF https://www.youtube.com/watch?v=VYDLTBjdliY------------------------------------------------*/
                         List<HashMap<String, String>> listItems = new ArrayList<>();
                         SimpleAdapter adapter = new SimpleAdapter(StoreOwner_ViewProducts.this, listItems, R.layout.owner_listproducts_resources,
                                 new String[]{"First Line", "Second Line"}, new int[]{R.id.listViewText1, R.id.listViewText2});
@@ -116,14 +112,16 @@ public class StoreOwner_ViewProducts extends AppCompatActivity {
                             listItems.add(resultsMap);
                         }
                         list.setAdapter(adapter);
+                        /**------------------------------------------------------------------------------------------------------------------------------------------*/
+
                     }
                 }
                 else{
                     Toast.makeText(StoreOwner_ViewProducts.this, "Database error!", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
-
     }
 
     @Override

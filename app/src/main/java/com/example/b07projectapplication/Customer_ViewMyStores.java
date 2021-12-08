@@ -48,7 +48,6 @@ public class Customer_ViewMyStores extends AppCompatActivity {
             public void onClick(int position) {
                 //pass the id of the clicked store
                 String id = list.get(position).getUserUID();
-                //System.out.println(id);
                 sendToProducts(id);
             }
         });

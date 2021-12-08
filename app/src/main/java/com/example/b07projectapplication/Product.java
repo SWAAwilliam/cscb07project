@@ -26,6 +26,7 @@ public class Product {
         return ("$" + this.priceString);
     }
     public int getQuantity() { return this.quantity; }
+
     public void setName(String name) { this.name = name; }
     public void setPrice(double price) {
         DecimalFormat decimalFormat = new DecimalFormat("0.##");

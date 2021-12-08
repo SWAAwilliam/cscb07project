@@ -100,7 +100,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
         /**----------------------------------------------END OF AUTO-GENERATED CODE-----------------------------------------------------------------------*/
 
-        //Start Login Process on Enter Press
+
+        //START LOGIN PROCESS ON ENTER PRESS
         passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -111,7 +112,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
                 return false;
             }
         });
-
 
     }
 

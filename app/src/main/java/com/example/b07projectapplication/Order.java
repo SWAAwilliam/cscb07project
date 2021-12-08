@@ -7,7 +7,7 @@ public class Order {
 
     String ownerUID;        //same as storeUID
     String customerUID;
-    String customerName;    //so that the owner can know the name of customer
+    String customerName;
     String storeName;
     boolean isComplete;
     ArrayList<Product> products;
@@ -25,6 +25,7 @@ public class Order {
         this.customerUID = customerUID;
         this.ownerUID = ownerUID;
     }
+
     public String getOwnerUID() { return ownerUID; }
     public void setOwnerUID(String ownerUID) { this.ownerUID = ownerUID;}
 
@@ -85,6 +86,5 @@ public class Order {
                 Objects.equals(customerName, other.customerName) && Objects.equals(products, other.products) &&
                 Objects.equals(isComplete, other.isComplete);
     }
-
 
 }
