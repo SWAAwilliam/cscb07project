@@ -36,6 +36,9 @@ public class LoginPresenter implements LoginContract.Presenter{
         else if (error.equals("Login error")){
             view.displayError("Login Failed, Please Check Your Email and Password!");
         }
+        else if (error.equals("DNE")){
+            view.displayError("User Does Not Exist!");
+        }
 
     }
 }

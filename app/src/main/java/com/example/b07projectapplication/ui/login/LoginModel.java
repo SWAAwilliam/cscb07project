@@ -47,6 +47,9 @@ public class LoginModel implements LoginContract.Model {
                                         presenter.successfulLogin(false);
                                     }
                                 }
+                                else{
+                                    presenter.checkError("DNE");
+                                }
                             }
                             else{
                                 //Database error

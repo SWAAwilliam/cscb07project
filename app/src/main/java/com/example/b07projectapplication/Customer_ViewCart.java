@@ -110,7 +110,6 @@ public class Customer_ViewCart extends AppCompatActivity {
         ref.child(id).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-
                 if ( task.isSuccessful() ){
                     StoreOwner owner = task.getResult().getValue(StoreOwner.class);
                     storeName = owner.getStoreName();
@@ -121,7 +120,6 @@ public class Customer_ViewCart extends AppCompatActivity {
         ref.child(userUID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-
                 if ( task.isSuccessful() ){
                     Customer customer = task.getResult().getValue(Customer.class);
                     customerName = customer.getFirstName()+ " " + customer.getLastName();
@@ -150,7 +148,7 @@ public class Customer_ViewCart extends AppCompatActivity {
 
 
         Intent intent = new Intent(Customer_ViewCart.this, Customer_ViewOrder.class);
-        //intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK|intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
