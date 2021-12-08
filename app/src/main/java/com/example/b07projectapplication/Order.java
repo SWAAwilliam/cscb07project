@@ -68,7 +68,7 @@ public class Order {
 
     @Override
     public int hashCode() {
-        return Objects.hash(ownerUID, customerUID, customerName, products);
+        return Objects.hash(ownerUID, customerUID, products);
     }
 
     @Override
