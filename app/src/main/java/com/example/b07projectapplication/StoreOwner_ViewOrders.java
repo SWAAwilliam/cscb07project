@@ -97,7 +97,7 @@ public class StoreOwner_ViewOrders extends AppCompatActivity {
         o1.setCustomerName("T1");
         o1.setOwnerUID("t1");
         o1.setCustomerUID("t1");
-        o1.setComplete(false);
+        o1.setStatus(false);
         ArrayList<Product> p = new ArrayList<Product>();
         Product p1 = new Product("p1", 1.00);
         p1.setQuantity(1);
@@ -112,7 +112,7 @@ public class StoreOwner_ViewOrders extends AppCompatActivity {
 
     private void completeOrder(Order o){
         // complete order...
-        //o.setComplete(true);
+        //o.setStatus(true);
         adapter.notifyDataSetChanged();
     }
 
