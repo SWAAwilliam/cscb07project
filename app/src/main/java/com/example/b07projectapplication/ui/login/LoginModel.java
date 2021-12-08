@@ -36,15 +36,19 @@ public class LoginModel implements LoginContract.Model {
                         public void onComplete(@NonNull Task<DataSnapshot> task) {
                             if (task.isSuccessful()){
                                 Person person = task.getResult().getValue(Person.class);
-                                boolean isOwner = person.getOwnerCheck();
+                                if (person != null) {
+                                    boolean isOwner = person.getOwnerCheck();
 
-                                if ( isOwner ) {
-                                    //User is an owner
-                                    presenter.successfulLogin(true);
+                                    if (isOwner) {
+                                        //User is an owner
+                                        presenter.successfulLogin(true);
+                                    } else {
+                                        //User is a customer
+                                        presenter.successfulLogin(false);
+                                    }
                                 }
                                 else{
-                                    //User is a customer
-                                    presenter.successfulLogin(false);
+                                    presenter.checkError("DNE");
                                 }
                             }
                             else{

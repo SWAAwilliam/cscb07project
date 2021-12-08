@@ -57,7 +57,7 @@ public class StoreOwner_AddNewProduct extends AppCompatActivity {
                 if ( task.isSuccessful() ){
                     //READ FROM DATABASE AND CREATE A COPY OF THE ARRAYLIST
                     StoreOwner owner = task.getResult().getValue(StoreOwner.class);
-//
+
                     //CREATE NEW PRODUCT
                     String newProductName = productName.getText().toString().trim();
                     String newProductPriceString = productPrice.getText().toString().trim();

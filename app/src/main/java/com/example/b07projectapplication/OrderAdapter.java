@@ -21,6 +21,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     ArrayList<Order> list;
     OrderAdapter.ButtonClickListener mylistener;
 
+
     //interface for when a store is clicked by the user
     public interface ButtonClickListener{
         void onClick(int position);
@@ -30,7 +31,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         mylistener = listener;
 
     }
-
 
     public OrderAdapter(Context context, ArrayList<Order> list) {
         this.context = context;
@@ -49,7 +49,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull OrderAdapter.MyViewHolder holder, int position) {
         Order o = list.get(position);
         holder.customerName.setText(o.customerName);
-//        Log.i("check", o.customerName);
         setListView(holder.products, o.getProducts());
         holder.b.setText("Complete");
 
@@ -59,7 +58,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         ArrayList<String> s = new ArrayList<String>();
         for (Product i: p) {
             s.add(i.getName() + " (" + i.getQuantity() + ")");
-//            Log.i("check", "test " +s.size() + i.getName());
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (context, android.R.layout.simple_list_item_1, s);
@@ -90,7 +88,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                 public void onClick(View v) {
                     if (listener != null){
                         int pos = getAdapterPosition();
-//                        Log.i("check","testing  " + pos);
                         listener.onClick(pos);
                     }
 
