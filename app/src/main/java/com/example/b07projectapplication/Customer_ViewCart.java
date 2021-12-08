@@ -117,9 +117,6 @@ public class Customer_ViewCart extends AppCompatActivity {
         else{
             newOrder.setProducts(fullCart);
         }
-        DatabaseReference refOrders = FirebaseDatabase.getInstance().getReference();
-        refOrders.child("orders").child( String.valueOf( newOrder.hashCode() ) ).setValue(newOrder);
-
 
         //SET THE STORE NAME AND CUSTOMER NAME
         ref.child(id).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -130,11 +127,12 @@ public class Customer_ViewCart extends AppCompatActivity {
                     storeName = owner.getStoreName();
                     newOrder.setStoreName(storeName);
 
-                    DatabaseReference refOrder = FirebaseDatabase.getInstance().getReference().child("orders");
-                    refOrder.child( String.valueOf( newOrder.hashCode() ) ).setValue(newOrder);
+                    DatabaseReference refOrders = FirebaseDatabase.getInstance().getReference();
+                    refOrders.child("orders").child( String.valueOf( newOrder.hashCode() ) ).setValue(newOrder);
                 }
             }
         });
+        String tempHash = String.valueOf( newOrder.hashCode());
         ref.child(userUID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -143,11 +141,17 @@ public class Customer_ViewCart extends AppCompatActivity {
                     customerName = customer.getFirstName()+ " " + customer.getLastName();
                     newOrder.setCustomerName(customerName);
 
-                    DatabaseReference refOrder = FirebaseDatabase.getInstance().getReference().child("orders");
-                    refOrder.child( String.valueOf( newOrder.hashCode() ) ).setValue(newOrder);
+                    DatabaseReference refOrders = FirebaseDatabase.getInstance().getReference();
+                    refOrders.child("orders").child( tempHash ).setValue(newOrder);
                 }
             }
 
+        });
+
+        DatabaseReference refOrders = FirebaseDatabase.getInstance().getReference();
+        refOrders.child( tempHash ).get().addOnSuccessListener(dataSnapshot -> {
+            refOrders.child( String.valueOf( newOrder.hashCode() ) ).setValue(dataSnapshot.getValue());
+            refOrders.child( tempHash ).removeValue();
         });
 
 
