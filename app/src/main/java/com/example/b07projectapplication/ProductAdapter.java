@@ -1,6 +1,7 @@
 package com.example.b07projectapplication;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -69,6 +70,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         });
 
         holder.b.setText("Add to Cart");
+
 
     }
 
