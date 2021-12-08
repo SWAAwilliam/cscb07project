@@ -125,7 +125,6 @@ public class CustomerAccountActivity extends AppCompatActivity {
             owner.setOwnerCheck( true );
             owner.setStoreName( storeName );
             owner.setProducts( placeHolderProducts2 );
-            owner.setOrders( placeHolderOrders2 );
             ref.child("users").child(user.getUid()).setValue(owner);
         }
         else{
@@ -141,7 +140,6 @@ public class CustomerAccountActivity extends AppCompatActivity {
             customer.setUserUID( userUID );
             customer.setFirstName( firstName );
             customer.setLastName( lastName );
-            customer.setOrders( placeHolderOrders );
             customer.setOwnerCheck( false );
             ref.child("users").child(user.getUid()).setValue(customer);
         }

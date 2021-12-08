@@ -87,7 +87,6 @@ public class Customer_ViewCart extends AppCompatActivity {
             }
         });
 
-
         adapter.setRecyclerViewClickListener(new CartAdapter.buttonClickListener() {
             @Override
             public void onClick(int position) {
@@ -98,6 +97,7 @@ public class Customer_ViewCart extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+
     }
 
 
