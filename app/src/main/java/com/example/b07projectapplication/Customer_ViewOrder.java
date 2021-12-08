@@ -103,8 +103,11 @@ public class Customer_ViewOrder extends AppCompatActivity {
             list.remove(o);
             ref.child(String.valueOf(o.hashCode())).removeValue();
             adapter.notifyDataSetChanged();
-        }
-        adapter.notifyDataSetChanged();*/
+        } */
+        list.remove(o);
+        ref.child(String.valueOf(o.hashCode())).removeValue();
+        adapter.notifyDataSetChanged();
+
     }
 
     @Override
