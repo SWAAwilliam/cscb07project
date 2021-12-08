@@ -52,8 +52,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         return list.size();
     }
 
-
-
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView storeName;
 

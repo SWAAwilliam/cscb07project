@@ -42,6 +42,8 @@ public class Customer_ViewOrder extends AppCompatActivity {
         adapter = new OrderAdapterCustomer(this, list);
         recyclerView.setAdapter(adapter);
 
+        updateList();
+
         adapter.setButtonClickListener(new OrderAdapterCustomer.ButtonClickListener() {
             @Override
             public void onClick(int position) {
@@ -52,10 +54,7 @@ public class Customer_ViewOrder extends AppCompatActivity {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot data: snapshot.getChildren()){
-                    Order o = data.getValue(Order.class);
-                    list.add(o);
-                }
+                updateList();
                 adapter.notifyDataSetChanged();
             }
             @Override
@@ -64,6 +63,26 @@ public class Customer_ViewOrder extends AppCompatActivity {
         });
     }
 
+
+    private void updateList(){
+
+        String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    list.clear();
+                    for (DataSnapshot data : task.getResult().getChildren()) {
+                        Order o = data.getValue(Order.class);
+                        if ((o.getCustomerUID()).equals(userUID)) {
+                            list.add(o);
+                        }
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+    }
 
     private void completeOrder(Order o){
         list.remove(o);
