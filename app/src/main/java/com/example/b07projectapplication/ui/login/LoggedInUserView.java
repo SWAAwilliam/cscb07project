@@ -27,7 +27,7 @@ class LoggedInUserView {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_create_account_page);
             Intent intent = getIntent();
-
         }
     }
+
 }

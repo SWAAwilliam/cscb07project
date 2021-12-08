@@ -12,7 +12,6 @@ public class LoginDataSource_AUTOGEN {
     public Result_AUTOGEN<LoggedInUser> login(String username, String password) {
 
         try {
-            // TODO: handle loggedInUser authentication
             LoggedInUser fakeUser =
                     new LoggedInUser(
                             java.util.UUID.randomUUID().toString(),
@@ -24,6 +23,5 @@ public class LoginDataSource_AUTOGEN {
     }
 
     public void logout() {
-        // TODO: revoke authentication
     }
 }

@@ -29,8 +29,8 @@ public class LoginModel implements LoginContract.Model {
 
                     FirebaseUser user = task.getResult().getUser();
                     String userUID = user.getUid();
-
                     DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+
                     ref.child(userUID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -39,33 +39,28 @@ public class LoginModel implements LoginContract.Model {
                                 if (person != null) {
                                     boolean isOwner = person.getOwnerCheck();
 
-                                    if (isOwner) {
+                                    if (isOwner)
                                         //User is an owner
                                         presenter.successfulLogin(true);
-                                    }
-                                    else {
+                                    else
                                         //User is a customer
                                         presenter.successfulLogin(false);
-                                    }
+
                                 }
-                                else{
+                                else
                                     //Account does not exist
                                     presenter.checkError("DNE");
-                                }
                             }
-                            else{
+                            else
                                 //Database error
                                 presenter.checkError("Database error");
-
-                            }
                         }
                     });
 
                 }
-                else{
+                else
                     //Wrong email and/or password
                     presenter.checkError("Login error");
-                }
             }
         });
 

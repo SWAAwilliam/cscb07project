@@ -1,6 +1,5 @@
 package com.example.b07projectapplication;
 
-import java.util.ArrayList;
 
 public class Customer extends Person{
 

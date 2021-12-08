@@ -26,9 +26,6 @@ import com.example.b07projectapplication.CustomerHomePage;
 import com.example.b07projectapplication.R;
 import com.example.b07projectapplication.StoreOwnerHomepage;
 import com.example.b07projectapplication.databinding.ActivityLoginBinding;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 

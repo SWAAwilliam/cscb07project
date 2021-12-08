@@ -16,8 +16,8 @@ public class LoggedInUser {
     public String getUserId() {
         return userId;
     }
-
     public String getDisplayName() {
         return displayName;
     }
+
 }
