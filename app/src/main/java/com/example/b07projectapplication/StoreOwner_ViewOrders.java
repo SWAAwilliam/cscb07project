@@ -75,7 +75,7 @@ public class StoreOwner_ViewOrders extends AppCompatActivity {
                    list.clear();
                    for (DataSnapshot data : task.getResult().getChildren()) {
                        Order o = data.getValue(Order.class);
-                       if ((o.getOwnerUID()).equals(userUID) && !(o.isComplete())) {
+                       if ((o.getOwnerUID()).equals(userUID) && ( o.isComplete() == false )) {
                            list.add(o);
                        }
                    }
@@ -88,6 +88,7 @@ public class StoreOwner_ViewOrders extends AppCompatActivity {
 
     private void completeOrder(Order o){
         o.setStatus(true);
+        ref.child(String.valueOf(o.hashCode())).setValue(o);
         updateList();
         adapter.notifyDataSetChanged();
     }
