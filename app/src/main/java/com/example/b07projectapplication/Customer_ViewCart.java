@@ -102,18 +102,36 @@ public class Customer_ViewCart extends AppCompatActivity {
 
 
     private void sendToOrder(){
-
         String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
 
-        //GET THE STORE NAME AND CUSTOMER NAME
+        //CREATE A ORDER FROM CART AND WRITE TO DATABASE
+        Order newOrder = new Order();
+        newOrder.setStatus(false);
+        newOrder.setCustomerUID(userUID);
+        newOrder.setOwnerUID(id);
+
+        if (fullCart.isEmpty()){
+            Toast.makeText(Customer_ViewCart.this, "Cart is Empty!  Please add products!", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            newOrder.setProducts(fullCart);
+        }
+        DatabaseReference refOrders = FirebaseDatabase.getInstance().getReference();
+        refOrders.child("orders").child( String.valueOf( newOrder.hashCode() ) ).setValue(newOrder);
+
+
+        //SET THE STORE NAME AND CUSTOMER NAME
         ref.child(id).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if ( task.isSuccessful() ){
                     StoreOwner owner = task.getResult().getValue(StoreOwner.class);
                     storeName = owner.getStoreName();
+                    newOrder.setStoreName(storeName);
 
+                    DatabaseReference refOrder = FirebaseDatabase.getInstance().getReference().child("orders");
+                    refOrder.child( String.valueOf( newOrder.hashCode() ) ).setValue(newOrder);
                 }
             }
         });
@@ -123,28 +141,14 @@ public class Customer_ViewCart extends AppCompatActivity {
                 if ( task.isSuccessful() ){
                     Customer customer = task.getResult().getValue(Customer.class);
                     customerName = customer.getFirstName()+ " " + customer.getLastName();
+                    newOrder.setCustomerName(customerName);
+
+                    DatabaseReference refOrder = FirebaseDatabase.getInstance().getReference().child("orders");
+                    refOrder.child( String.valueOf( newOrder.hashCode() ) ).setValue(newOrder);
                 }
             }
 
         });
-
-
-        //CREATE A ORDER FROM CART AND WRITE TO DATABASE
-        Order newOrder = new Order();
-        newOrder.setStatus(false);
-        newOrder.setCustomerName(customerName);
-        newOrder.setStoreName(storeName);
-        newOrder.setCustomerUID(userUID);
-        newOrder.setOwnerUID(id);
-        if (fullCart.isEmpty()){
-            Toast.makeText(Customer_ViewCart.this, "Cart is Empty!  Please add products!", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            newOrder.setProducts(fullCart);
-        }
-        //NEED TO CHECK FOR DUPLICATE ORDERS
-        DatabaseReference refOrders = FirebaseDatabase.getInstance().getReference();
-        refOrders.child("orders").child( String.valueOf( newOrder.hashCode() ) ).setValue(newOrder);
 
 
         Intent intent = new Intent(Customer_ViewCart.this, Customer_ViewOrder.class);
